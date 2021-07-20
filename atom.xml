@@ -6,7 +6,7 @@
   <link href="https://macshion.github.io/atom.xml" rel="self"/>
   
   <link href="https://macshion.github.io/"/>
-  <updated>2021-07-07T09:59:48.272Z</updated>
+  <updated>2021-07-20T06:56:57.713Z</updated>
   <id>https://macshion.github.io/</id>
   
   <author>
@@ -17,18 +17,82 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Saladict - All-in-one professional pop-up dictionary and page translator</title>
+    <title></title>
+    <link href="https://macshion.github.io/webpack/"/>
+    <id>https://macshion.github.io/webpack/</id>
+    <published>2021-07-20T06:56:57.713Z</published>
+    <updated>2021-07-20T06:56:57.713Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Webpack前端构建⼯具原理剖析&lt;/p&gt;
+&lt;h2 id=&quot;⼀、什么是webpack&quot;&gt;&lt;a href=&quot;#⼀、什么是webpack&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://macshion.github.io/Dingding-interview/"/>
+    <id>https://macshion.github.io/Dingding-interview/</id>
+    <published>2021-07-20T04:13:27.025Z</published>
+    <updated>2021-07-20T04:12:59.319Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://macshion.github.io/MongoDB/"/>
+    <id>https://macshion.github.io/MongoDB/</id>
+    <published>2021-07-20T03:56:32.583Z</published>
+    <updated>2021-07-20T03:56:32.583Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;MongoDB常用操作命令&quot;&gt;&lt;a href=&quot;#MongoDB常用操作命令&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
     <link href="https://macshion.github.io/Saladict-All-in-one-professional-pop-up-dictionary-and-page-translator/"/>
     <id>https://macshion.github.io/Saladict-All-in-one-professional-pop-up-dictionary-and-page-translator/</id>
-    <published>2021-07-07T09:58:20.146Z</published>
-    <updated>2021-07-07T09:59:48.272Z</updated>
+    <published>2021-07-20T02:17:13.662Z</published>
+    <updated>2021-07-20T02:17:13.662Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;&lt;a</summary>
+    <summary type="html">&lt;h1 id=&quot;Saladict-All-in-one-professional-pop-up-dictionary-and-page-translator&quot;&gt;&lt;a</summary>
         
       
     
@@ -38,18 +102,73 @@
   </entry>
   
   <entry>
-    <title>Anki - Powerful and intelligent flash cards</title>
+    <title></title>
+    <link href="https://macshion.github.io/product%20plan/"/>
+    <id>https://macshion.github.io/product%20plan/</id>
+    <published>2021-07-20T02:16:52.520Z</published>
+    <updated>2021-07-20T02:16:52.520Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;新建笔记&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;导入文件&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;书签管理&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;添加标注&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;笔记脑图&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;合并笔记导出&lt;/p&gt;
+&lt;/li&gt;
+&lt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://macshion.github.io/BooksNote/"/>
+    <id>https://macshion.github.io/BooksNote/</id>
+    <published>2021-07-20T02:16:09.723Z</published>
+    <updated>2021-07-20T02:16:09.723Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;BookxNote-An-Exellent-Tool-for-Reading-PDF-and-Taking-Notes&quot;&gt;&lt;a href=&quot;#BookxNote-An-Exellent-Tool-for-Reading-PDF-and-Taking-Notes&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
     <link href="https://macshion.github.io/Anki-Powerful-and-intelligent-flash-cards/"/>
     <id>https://macshion.github.io/Anki-Powerful-and-intelligent-flash-cards/</id>
-    <published>2021-07-07T09:48:43.143Z</published>
-    <updated>2021-07-07T10:00:02.489Z</updated>
+    <published>2021-07-20T02:15:50.293Z</published>
+    <updated>2021-07-20T02:15:50.293Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;&lt;a</summary>
+    <summary type="html">&lt;h1 id=&quot;Anki-Powerful-and-intelligent-flash-cards&quot;&gt;&lt;a href=&quot;#Anki-Powerful-and-intelligent-flash-cards&quot; class=&quot;headerlink&quot; title=&quot;Anki -</summary>
         
       
     
@@ -59,12 +178,88 @@
   </entry>
   
   <entry>
-    <title>How to Learn English</title>
-    <link href="https://macshion.github.io/How-to-Learn-English/"/>
-    <id>https://macshion.github.io/How-to-Learn-English/</id>
-    <published>2021-07-07T09:01:02.000Z</published>
-    <updated>2021-07-07T09:01:42.007Z</updated>
+    <title></title>
+    <link href="https://macshion.github.io/Grepper/"/>
+    <id>https://macshion.github.io/Grepper/</id>
+    <published>2021-07-20T02:15:32.626Z</published>
+    <updated>2021-07-20T02:15:32.626Z</updated>
     
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;The-Query-amp-Answer-System-for-the-Ambitious-Developer&quot;&gt;&lt;a href=&quot;#The-Query-amp-Answer-System-for-the-Ambitious-Developer&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://macshion.github.io/Untitled/"/>
+    <id>https://macshion.github.io/Untitled/</id>
+    <published>2021-07-15T06:27:33.974Z</published>
+    <updated>2021-07-15T06:27:33.974Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;marginnote&lt;/strong&gt;（ipad，mac）（收费，但会用的人物超所值）：在pdf上做笔记并整理成思维导图，可导出anki卡牌&lt;/p&gt;
+&lt;p&gt;BookxNote&lt;/p&gt;
+&lt;figure class=&quot;highlight</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Youtube-ltc下载油管和B站视频</title>
+    <link href="https://macshion.github.io/Youtube-ltc%E4%B8%8B%E8%BD%BD%E6%B2%B9%E7%AE%A1%E5%92%8CB%E7%AB%99%E8%A7%86%E9%A2%91/"/>
+    <id>https://macshion.github.io/Youtube-ltc%E4%B8%8B%E8%BD%BD%E6%B2%B9%E7%AE%A1%E5%92%8CB%E7%AB%99%E8%A7%86%E9%A2%91/</id>
+    <published>2021-07-15T06:19:19.786Z</published>
+    <updated>2021-07-15T06:19:19.786Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Youtube-lt是一个用Python开发的命令行下载工具，支持下载youtube、Bilibili等网站的视频。&lt;/p&gt;
+&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Tools" scheme="https://macshion.github.io/tags/Tools/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://macshion.github.io/windows_wsl_vscode/"/>
+    <id>https://macshion.github.io/windows_wsl_vscode/</id>
+    <published>2021-07-14T05:18:02.426Z</published>
+    <updated>2021-07-14T05:18:02.426Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;WSL-Windows中的Linux&quot;&gt;&lt;a href=&quot;#WSL-Windows中的Linux&quot; class=&quot;headerlink&quot; title=&quot;WSL - Windows中的Linux&quot;&gt;&lt;/a&gt;WSL - Windows中的Linux&lt;/h2&gt;&lt;h3</summary>
+        
+      
     
     
     
@@ -166,30 +361,6 @@
     <category term="Umi" scheme="https://macshion.github.io/tags/Umi/"/>
     
     <category term="Nextjs" scheme="https://macshion.github.io/tags/Nextjs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Youtube-ltc下载油管和B站视频</title>
-    <link href="https://macshion.github.io/Youtube-ltc%E4%B8%8B%E8%BD%BD%E6%B2%B9%E7%AE%A1%E5%92%8CB%E7%AB%99%E8%A7%86%E9%A2%91/"/>
-    <id>https://macshion.github.io/Youtube-ltc%E4%B8%8B%E8%BD%BD%E6%B2%B9%E7%AE%A1%E5%92%8CB%E7%AB%99%E8%A7%86%E9%A2%91/</id>
-    <published>2021-02-25T06:43:34.121Z</published>
-    <updated>2021-04-06T08:46:30.136Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Youtube-lt是一个用Python开发的命令行下载工具，支持下载youtube、Bilibili等网站的视频。&lt;/p&gt;
-&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Tools" scheme="https://macshion.github.io/tags/Tools/"/>
     
   </entry>
   
@@ -308,133 +479,6 @@
     <category term="SEO" scheme="https://macshion.github.io/tags/SEO/"/>
     
     <category term="Gatsby" scheme="https://macshion.github.io/tags/Gatsby/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>How To Use Axios with React</title>
-    <link href="https://macshion.github.io/HowToUseAxioswithReact/"/>
-    <id>https://macshion.github.io/HowToUseAxioswithReact/</id>
-    <published>2020-12-29T11:05:11.746Z</published>
-    <updated>2021-04-06T04:17:55.024Z</updated>
-    
-    
-    <summary type="html">&lt;h3 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h3&gt;&lt;p&gt;Many projects on the web need to interface with a REST API at some stage in their development. &lt;a href=&quot;https://github.com/axios/axios&quot;&gt;Axios&lt;/a&gt; is a lightweight HTTP client based on the &lt;code&gt;$http&lt;/code&gt; service within Angular.js v1.x and is similar to the native JavaScript &lt;a href=&quot;https://www.digitalocean.com/community/tutorials/js-fetch-api&quot;&gt;Fetch API&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Axios is promise-based, which gives you the ability to take advantage of JavaScript’s &lt;code&gt;async&lt;/code&gt; and &lt;code&gt;await&lt;/code&gt; for more readable asynchronous code.&lt;/p&gt;
-&lt;p&gt;You can also intercept and cancel requests, and there’s built-in client-side protection against cross-site request forgery.&lt;/p&gt;
-&lt;p&gt;In this article, you will see examples of how to use Axios to access the popular &lt;a href=&quot;https://jsonplaceholder.typicode.com/&quot;&gt;JSON Placeholder&lt;/a&gt; API within a React application.&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="Axios" scheme="https://macshion.github.io/tags/Axios/"/>
-    
-    <category term="React" scheme="https://macshion.github.io/tags/React/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>清华大学刘知远：自然语言理解难在哪儿？</title>
-    <link href="https://macshion.github.io/NLP-difficult/"/>
-    <id>https://macshion.github.io/NLP-difficult/</id>
-    <published>2020-12-18T04:03:36.000Z</published>
-    <updated>2020-12-29T11:05:11.751Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;在微博和知乎上关注&lt;strong&gt;自然语言处理（NLP）&lt;/strong&gt;技术的朋友，应该都对**#NLP太难了#&lt;strong&gt;、&lt;/strong&gt;#自然语言理解太难了#**两个话题标签不陌生，其下汇集了各种不仅难煞计算机、甚至让人也发懵的费解句子或歧义引起的笑话。然而，这些例子只是让人直觉计算机理解人类语言太难了，NLP到底难在哪里，还缺少通俗易懂的介绍。&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="NLP" scheme="https://macshion.github.io/tags/NLP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NLP自然语言处理学习路线</title>
-    <link href="https://macshion.github.io/nlp-routes/"/>
-    <id>https://macshion.github.io/nlp-routes/</id>
-    <published>2020-12-17T12:21:35.000Z</published>
-    <updated>2021-04-06T04:21:08.966Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;code&gt;nlp-roadmap&lt;/code&gt; is &lt;code&gt;Natural Language Processing&lt;/code&gt; &lt;strong&gt;ROADMAP(Mind Map)&lt;/strong&gt; and &lt;strong&gt;KEYWORD&lt;/strong&gt; for students those who have interest in learning Natural Language Processing. The roadmap covers the materials from basic probability/statistics to SOTA NLP models.&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="NLP" scheme="https://macshion.github.io/tags/NLP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Markdown写作自动上传图片至Github - Typora编辑器 + PicGo河床</title>
-    <link href="https://macshion.github.io/Typora-PicGo-Github/"/>
-    <id>https://macshion.github.io/Typora-PicGo-Github/</id>
-    <published>2020-12-16T10:09:27.000Z</published>
-    <updated>2020-12-29T11:05:11.754Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;使用Typora+PicGo可以在Markdown写作过程中非常方便快速地插入图片。&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="Tools" scheme="https://macshion.github.io/tags/Tools/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>How To Use Styled-Components In React</title>
-    <link href="https://macshion.github.io/How-To-Use-Styled-Components-In-React/"/>
-    <id>https://macshion.github.io/How-To-Use-Styled-Components-In-React/</id>
-    <published>2020-12-16T04:58:09.000Z</published>
-    <updated>2021-07-07T02:50:19.217Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;While the component-driven approach has ushered in a new frontier in the way we build web applications, it isn’t without its imperfections — one being its usability and scalability with CSS. This has given birth to a new way to construct and manage our styles in a &lt;strong&gt;component-specific&lt;/strong&gt; manner, otherwise knows as CSS-in-JS.&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="React" scheme="https://macshion.github.io/tags/React/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>我最爱的11款谷歌插件</title>
-    <link href="https://macshion.github.io/chrome-extensions/"/>
-    <id>https://macshion.github.io/chrome-extensions/</id>
-    <published>2020-11-19T09:57:50.000Z</published>
-    <updated>2020-12-29T11:05:11.756Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;作为前端程序员，日常太多时间花在浏览器上了，把它用到极致吧！&lt;/p&gt;
-&lt;p&gt;Chrome绝不仅仅是一个浏览器，它众多的插件真的非常强大！上个月看了一篇介绍谷歌插件的文章后，我意识到自己错过了太多，便特意花了两周时间，搜罗插件商店，找到了最适合自己的工具，真是太好用了！&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="Tools" scheme="https://macshion.github.io/tags/Tools/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Redux tutorial</title>
-    <link href="https://macshion.github.io/Redux-tutorial/"/>
-    <id>https://macshion.github.io/Redux-tutorial/</id>
-    <published>2020-11-18T10:12:36.000Z</published>
-    <updated>2021-04-06T04:21:21.824Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;Tutorial-0-introduction&quot;&gt;&lt;a href=&quot;#Tutorial-0-introduction&quot; class=&quot;headerlink&quot; title=&quot;Tutorial 0 - introduction&quot;&gt;&lt;/a&gt;Tutorial 0 - introduction&lt;/h2&gt;&lt;p&gt;Why this tutorial?&lt;br&gt;While trying to learn Redux, I realized that I had accumulated incorrect knowledge about flux through&lt;br&gt;articles I read and personal experience. I don’t mean that articles about flux are not well written&lt;br&gt;but I just didn’t grasp concepts correctly. In the end, I was just applying documentation of different&lt;br&gt;flux frameworks (Reflux, Flummox, FB Flux) and trying to make them match with the theoretical concept I read&lt;br&gt;about (actions / actions creators, store, dispatcher, etc).&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="React" scheme="https://macshion.github.io/tags/React/"/>
-    
-    <category term="Redux" scheme="https://macshion.github.io/tags/Redux/"/>
     
   </entry>
   

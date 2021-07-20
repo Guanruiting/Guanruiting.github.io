@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="author" content="zchengsite, 1451426471@qq.com" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  
+  <title>Macshion</title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Macshion" type="application/atom+xml">
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="flex-container header">
+    <div class="avatar">
+    <a href="/">
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <!-- <div class="nickname"><a href="/">Macshion</a></div> -->
+  </div>
+    <div class="header-container">
+  
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Categories</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Links</a>
+        </li>
+      
+    </ul>
+  </div>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title"></div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2021-07-20
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <p>Webpack前端构建⼯具原理剖析</p>
+<h2 id="⼀、什么是webpack"><a href="#⼀、什么是webpack" class="headerlink" title="⼀、什么是webpack"></a>⼀、什么是webpack</h2><p>webpack是⼀个打包⼯具，他的宗旨是⼀切静态资源皆可打包。</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210720144103400.png" alt="image-20210720144103400"></p>
+<h2 id="⼆、原型分析"><a href="#⼆、原型分析" class="headerlink" title="⼆、原型分析"></a>⼆、原型分析</h2><p>⾸先我们通过⼀个制作⼀个打包⽂件的原型。</p>
+<p>假设有两个js模块，这⾥我们先假设这两个模块是复合commomjs标准的es5模块。</p>
+<p>我们的⽬的是将这两个模块打包为⼀个能在浏览器端运⾏的⽂件，这个⽂件其实叫bundle.js。</p>
+<p>⽐如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">var</span> add = <span class="built_in">require</span>(<span class="string">&#x27;add.js&#x27;</span>).default</span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span> , <span class="number">2</span>))</span><br><span class="line"><span class="comment">// add.js</span></span><br><span class="line"><span class="built_in">exports</span>.default = <span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>) </span>&#123;<span class="keyword">return</span> a + b&#125;</span><br></pre></td></tr></table></figure>
+
+<p>假设在浏览器中直接执⾏这个程序肯定会有问题 主要的问题是浏览器中没有exports对象与require⽅法所以⼀定会报错。</p>
+<p>我们需要通过模拟exports对象和require⽅法</p>
+<h3 id="1-模拟exports对象"><a href="#1-模拟exports对象" class="headerlink" title="1.模拟exports对象"></a>1.模拟exports对象</h3><p>⾸先我们知道如果在nodejs打包的时候我们会使⽤sfs.readfileSync()来读取js⽂件。这样的话js⽂件会是<br>⼀个字符串。⽽如果需要将字符串中的代码运⾏会有两个⽅法分别是new Function与Eval。<br>在这⾥⾯我们选⽤执⾏效率较⾼的eval。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exports</span> = &#123;&#125;</span><br><span class="line"><span class="built_in">eval</span>(<span class="string">&#x27;exports.default = function(a,b) &#123;return a + b&#125;&#x27;</span>) <span class="comment">// node⽂件读取后的代码字符串</span></span><br><span class="line"><span class="built_in">exports</span>.default(<span class="number">1</span>,<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210720144245345.png" alt="image-20210720144245345"></p>
+<p>上⾯这段代码的运⾏结果可以将模块中的⽅法绑定在exports对象中。由于⼦模块中会声明变量，为了不污染全局我们使⽤⼀个⾃运⾏函数来封装⼀下。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">exports</span> = &#123;&#125;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"><span class="built_in">exports</span>, code</span>) </span>&#123;</span><br><span class="line"><span class="built_in">eval</span>(code)</span><br><span class="line">&#125;)(<span class="built_in">exports</span>, <span class="string">&#x27;exports.default = function(a,b)&#123;return a + b&#125;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-模拟require函数"><a href="#2-模拟require函数" class="headerlink" title="2.模拟require函数"></a>2.模拟require函数</h3><p>require函数的功能⽐较简单，就是根据提供的file名称加载对应的模块。</p>
+<p>⾸先我们先看看如果只有⼀个固定模块应该怎么写。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">require</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">var</span> <span class="built_in">exports</span> = &#123;&#125;;</span><br><span class="line"> (<span class="function"><span class="keyword">function</span> (<span class="params"><span class="built_in">exports</span>, code</span>) </span>&#123;</span><br><span class="line"> <span class="built_in">eval</span>(code)</span><br><span class="line"> &#125;)(<span class="built_in">exports</span>, <span class="string">&#x27;exports.default = function(a,b)&#123;return a + b&#125;&#x27;</span>)</span><br><span class="line"> <span class="keyword">return</span> <span class="built_in">exports</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> add = <span class="built_in">require</span>(<span class="string">&#x27;add.js&#x27;</span>).default</span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span> , <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+
+
+<p>完成了固定模块，我们下⾯只需要稍加改动，将所有模块的⽂件名和代码字符串整理为⼀张key-value表，就可以根据传⼊的⽂件名加载不同的模块了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">list</span>) </span>&#123;</span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">require</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">var</span> <span class="built_in">exports</span> = &#123;&#125;;</span><br><span class="line"> (<span class="function"><span class="keyword">function</span> (<span class="params"><span class="built_in">exports</span>, code</span>) </span>&#123;</span><br><span class="line"> <span class="built_in">eval</span>(code);</span><br><span class="line"> &#125;)(<span class="built_in">exports</span>, list[file]);</span><br><span class="line"> <span class="keyword">return</span> <span class="built_in">exports</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">require</span>(<span class="string">&quot;index.js&quot;</span>);</span><br><span class="line">&#125;)(&#123;</span><br><span class="line"> <span class="string">&quot;index.js&quot;</span>: <span class="string">`</span></span><br><span class="line"><span class="string"> var add = require(&#x27;add.js&#x27;).default</span></span><br><span class="line"><span class="string"> console.log(add(1 , 2))</span></span><br><span class="line"><span class="string"> `</span>,</span><br><span class="line"> <span class="string">&quot;add.js&quot;</span>: <span class="string">`exports.default = function(a,b)&#123;return a + b&#125;`</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>当然要说明的⼀点是真正webpack⽣成的bundle.js⽂件中还需要增加模块间的依赖关系。</p>
+<p>叫做依赖图（Dependency Graph）</p>
+<p>类似下⾯的情况。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> <span class="string">&quot;./src/index.js&quot;</span>: &#123;</span><br><span class="line"> <span class="string">&quot;deps&quot;</span>: &#123; <span class="string">&quot;./add.js&quot;</span>: <span class="string">&quot;./src/add.js&quot;</span> &#125;,</span><br><span class="line"> <span class="string">&quot;code&quot;</span>: <span class="string">&quot;.....&quot;</span></span><br><span class="line"> &#125;,</span><br><span class="line"> <span class="string">&quot;./src/add.js&quot;</span>: &#123;</span><br><span class="line"> <span class="string">&quot;deps&quot;</span>: &#123;&#125;,</span><br><span class="line"> <span class="string">&quot;code&quot;</span>: <span class="string">&quot;......&quot;</span></span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>另外，由于⼤多数前端程序都习惯使⽤es6语法所以还需要预先将es6语法转换为es5语法。</p>
+<p>总结⼀下思路，webpack打包可以分为以下三个步骤：</p>
+<ol>
+<li>分析依赖</li>
+<li>ES6转ES5</li>
+<li>替换exports和require</li>
+</ol>
+<h2 id="三、功能实现"><a href="#三、功能实现" class="headerlink" title="三、功能实现"></a>三、功能实现</h2><p>我们的⽬标是将以下两个个互相依赖的ES6Module打包为⼀个可以在浏览器中运⾏的⼀个JS⽂件(bundle.js)</p>
+<p>处理模块化<br>多模块合并打包 - 优化⽹络请求</p>
+<p>/src/add.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (a, b) =&gt; a + b</span><br></pre></td></tr></table></figure>
+
+<p>/src/index.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> add <span class="keyword">from</span> <span class="string">&quot;./add.js&quot;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span> , <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-分析模块"><a href="#1-分析模块" class="headerlink" title="1.分析模块"></a>1.分析模块</h3><p>分析模块分为以下三个步骤：</p>
+<p>模块的分析相当于对读取的⽂件代码字符串进⾏解析。这⼀步其实和⾼级语⾔的编译过程⼀致。需要将模块解析为抽象语法树AST。我们借助babel/parser来完成。</p>
+<p>AST （Abstract Syntax Tree）抽象语法树 在计算机科学中，或简称语法树（Syntax tree），是源代码语法结构的⼀种抽象表示。它以树状的形式表现编程语⾔的语法结构，树上的每个节点都表示源代码中的⼀种结构。（<a target="_blank" rel="noopener" href="https://astexplorer.net/%EF%BC%89">https://astexplorer.net/）</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yarn add @babel/parser</span><br><span class="line">yarn add @babel/traverse</span><br><span class="line">yarn add @babel/core</span><br><span class="line">yarn add @babel/preset-env</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>读取⽂件</li>
+<li>收集依赖</li>
+<li>编译与AST解析</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> parser = <span class="built_in">require</span>(<span class="string">&quot;@babel/parser&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> traverse = <span class="built_in">require</span>(<span class="string">&quot;@babel/traverse&quot;</span>).default;</span><br><span class="line"><span class="keyword">const</span> babel = <span class="built_in">require</span>(<span class="string">&quot;@babel/core&quot;</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getModuleInfo</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line"> <span class="comment">// 读取⽂件</span></span><br><span class="line"> <span class="keyword">const</span> body = fs.readFileSync(file, <span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line"> <span class="comment">// 转化AST语法树</span></span><br><span class="line"> <span class="keyword">const</span> ast = parser.parse(body, &#123;</span><br><span class="line"> sourceType: <span class="string">&quot;module&quot;</span>, <span class="comment">//表示我们要解析的是ES模块</span></span><br><span class="line"> &#125;);</span><br><span class="line"> <span class="comment">// 依赖收集</span></span><br><span class="line"> <span class="keyword">const</span> deps = &#123;&#125;;</span><br><span class="line"> traverse(ast, &#123;</span><br><span class="line"> <span class="function"><span class="title">ImportDeclaration</span>(<span class="params">&#123; node &#125;</span>)</span> &#123;</span><br><span class="line"> <span class="keyword">const</span> dirname = path.dirname(file);</span><br><span class="line"> <span class="keyword">const</span> abspath = <span class="string">&quot;./&quot;</span> + path.join(dirname, node.source.value);</span><br><span class="line"> deps[node.source.value] = abspath;</span><br><span class="line"> &#125;,</span><br><span class="line"> &#125;);</span><br><span class="line">运⾏结果如下：</span><br><span class="line"><span class="number">2.</span> 收集依赖</span><br><span class="line">上⼀步开发的函数可以单独解析某⼀个模块，这⼀步我们需要开发⼀个函数从⼊⼝模块开始根据依赖关</span><br><span class="line">系进⾏递归解析。最后将依赖关系构成为依赖图（Dependency Graph）</span><br><span class="line"> <span class="comment">// ES6转成ES5</span></span><br><span class="line"> <span class="keyword">const</span> &#123; code &#125; = babel.transformFromAst(ast, <span class="literal">null</span>, &#123;</span><br><span class="line"> presets: [<span class="string">&quot;@babel/preset-env&quot;</span>],</span><br><span class="line"> &#125;);</span><br><span class="line"> <span class="keyword">const</span> moduleInfo = &#123; file, deps, code &#125;;</span><br><span class="line"> <span class="keyword">return</span> moduleInfo;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> info = getModuleInfo(<span class="string">&quot;./src/index.js&quot;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;info:&quot;</span>, info);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>运⾏结果如下：</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210720144822288.png" alt="image-20210720144822288"></p>
+<h3 id="2-收集依赖"><a href="#2-收集依赖" class="headerlink" title="2.收集依赖"></a>2.收集依赖</h3><p>上⼀步开发的函数可以单独解析某⼀个模块，这⼀步我们需要开发⼀个函数从⼊⼝模块开始根据依赖关<br>系进⾏递归解析。 后将依赖关系构成为依赖图（Dependency Graph）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模块解析</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> <span class="variable">file</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseModules</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">const</span> entry = getModuleInfo(file);</span><br><span class="line"> <span class="keyword">const</span> temp = [entry];</span><br><span class="line"> <span class="keyword">const</span> depsGraph = &#123;&#125;;</span><br><span class="line"> getDeps(temp, entry);</span><br><span class="line"> temp.forEach(<span class="function">(<span class="params">moduleInfo</span>) =&gt;</span> &#123;</span><br><span class="line"> depsGraph[moduleInfo.file] = &#123;</span><br><span class="line"> deps: moduleInfo.deps,</span><br><span class="line"> code: moduleInfo.code,</span><br><span class="line"> &#125;;</span><br><span class="line"> &#125;);</span><br><span class="line"> <span class="keyword">return</span> depsGraph;</span><br><span class="line"><span class="number">3.</span> ⽣成bundle⽂件</span><br><span class="line">这⼀步我们需要将刚才编写的执⾏函数和依赖图合成起来输出最后的打包⽂件。</span><br><span class="line">最后可以编写⼀个简单的测试程序测试⼀下结果。</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取依赖</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> <span class="variable">temp</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> <span class="variable">param1</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getDeps</span>(<span class="params">temp, &#123; deps &#125;</span>) </span>&#123;</span><br><span class="line"> <span class="built_in">Object</span>.keys(deps).forEach(<span class="function">(<span class="params">key</span>) =&gt;</span> &#123;</span><br><span class="line"> <span class="keyword">const</span> child = getModuleInfo(deps[key]);</span><br><span class="line"> temp.push(child);</span><br><span class="line"> getDeps(temp, child);</span><br><span class="line"> &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-⽣成bundle⽂件"><a href="#3-⽣成bundle⽂件" class="headerlink" title="3.⽣成bundle⽂件"></a>3.⽣成bundle⽂件</h3><p>这⼀步我们需要将刚才编写的执⾏函数和依赖图合成起来输出最后的打包⽂件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bundle</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">const</span> depsGraph = <span class="built_in">JSON</span>.stringify(parseModules(file));</span><br><span class="line"> <span class="keyword">return</span> <span class="string">`(function (graph) &#123;</span></span><br><span class="line"><span class="string"> function require(file) &#123;</span></span><br><span class="line"><span class="string"> function absRequire(relPath) &#123;</span></span><br><span class="line"><span class="string"> return require(graph[file].deps[relPath])</span></span><br><span class="line"><span class="string"> &#125;</span></span><br><span class="line"><span class="string"> var exports = &#123;&#125;;</span></span><br><span class="line"><span class="string"> (function (require,exports,code) &#123;</span></span><br><span class="line"><span class="string"> eval(code)</span></span><br><span class="line"><span class="string"> &#125;)(absRequire,exports,graph[file].code)</span></span><br><span class="line"><span class="string"> return exports</span></span><br><span class="line"><span class="string"> &#125;</span></span><br><span class="line"><span class="string"> require(&#x27;<span class="subst">$&#123;file&#125;</span>&#x27;)</span></span><br><span class="line"><span class="string"> &#125;)(<span class="subst">$&#123;depsGraph&#125;</span>)`</span>;</span><br><span class="line">&#125;</span><br><span class="line">!fs.existsSync(<span class="string">&quot;./dist&quot;</span>) &amp;&amp; fs.mkdirSync(<span class="string">&quot;./dist&quot;</span>);</span><br><span class="line">fs.writeFileSync(<span class="string">&quot;./dist/bundle.js&quot;</span>, content);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>最后可以编写⼀个简单的测试程序测试⼀下结果。</p>
+<script src="./dist/bundle.js"></script>
+
+
+
+<p>后⾯有兴趣的话⼤家可以在考虑⼀下如何加载css⽂件或者图⽚base64 Vue SFC .vue。</p>
+<p>ESM vs Webpack <a target="_blank" rel="noopener" href="https://juejin.cn/post/6947890290896142350">https://juejin.cn/post/6947890290896142350</a><br>⼿写webpack原理 <a target="_blank" rel="noopener" href="https://juejin.cn/post/6854573217336541192">https://juejin.cn/post/6854573217336541192</a><br>看完这篇还搞不懂webpack <a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904030649614349">https://juejin.cn/post/6844904030649614349</a><br>webpack系列之打包原理 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41319237/article/details/116194091">https://blog.csdn.net/weixin_41319237/article/details/116194091</a></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/Dingding-interview/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2021-07-20
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div class="post-catalog" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%BC%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFwebpack"><span class="toc-text">⼀、什么是webpack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%BC%86%E3%80%81%E5%8E%9F%E5%9E%8B%E5%88%86%E6%9E%90"><span class="toc-text">⼆、原型分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A8%A1%E6%8B%9Fexports%E5%AF%B9%E8%B1%A1"><span class="toc-text">1.模拟exports对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%A8%A1%E6%8B%9Frequire%E5%87%BD%E6%95%B0"><span class="toc-text">2.模拟require函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"><span class="toc-text">三、功能实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%86%E6%9E%90%E6%A8%A1%E5%9D%97"><span class="toc-text">1.分析模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%94%B6%E9%9B%86%E4%BE%9D%E8%B5%96"><span class="toc-text">2.收集依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E2%BD%A3%E6%88%90bundle%E2%BD%82%E4%BB%B6"><span class="toc-text">3.⽣成bundle⽂件</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/macshion">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="twitter" target="_blank" rel="noopener" href="https://twitter.com/_Macshion">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="weibo" target="_blank" rel="noopener" href="https://weibo.com/1909056972">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      
+        <a href="https://macshion.github.io/">Copyright © Macshion 2019+</a>
+        
+    </div>
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+      
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+    </div>
+  </body>
+</html>
