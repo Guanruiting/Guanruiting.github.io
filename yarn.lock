@@ -117,6 +117,11 @@
   dependencies:
     "sprintf-js" "~1.0.2"
 
+"argparse@^2.0.1":
+  "integrity" "sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q=="
+  "resolved" "https://registry.npmjs.org/argparse/-/argparse-2.0.1.tgz"
+  "version" "2.0.1"
+
 "asap@^2.0.3", "asap@~2.0.3":
   "integrity" "sha1-5QNHYR1+aQlDIIu9r+vLwvuGbUY="
   "resolved" "https://registry.npm.taobao.org/asap/download/asap-2.0.6.tgz"
@@ -695,8 +700,8 @@
     "tildify" "^2.0.0"
 
 "hexo-deployer-git@^2.1.0":
-  "integrity" "sha1-LnLwXXsxjb4pkp0VbqE/kTI1T/E="
-  "resolved" "https://registry.npm.taobao.org/hexo-deployer-git/download/hexo-deployer-git-2.1.0.tgz"
+  "integrity" "sha512-0rx8YVd1UrwD9vUzIPrB7mljLdcmUv0zRj3MAMCBxY7HqI2RM5ZEV0uKxi34qB7LYA80BNl3FWHl2ghO/tKVTA=="
+  "resolved" "https://registry.npmjs.org/hexo-deployer-git/-/hexo-deployer-git-2.1.0.tgz"
   "version" "2.1.0"
   dependencies:
     "bluebird" "^3.5.0"
@@ -887,10 +892,10 @@
     "strip-indent" "^3.0.0"
     "striptags" "^3.1.1"
 
-"hexo@^5.3.0":
-  "integrity" "sha512-Q8JPpXYDemyIzRIjRx3555HALvnOqIeCj4NnW6T8aiZpi9hgZxTnpFDY2fBPdKIPNc5GvP4mL/705znxAM8kcA=="
-  "resolved" "https://registry.npmjs.org/hexo/-/hexo-5.3.0.tgz"
-  "version" "5.3.0"
+"hexo@^5.4.0":
+  "integrity" "sha512-4vMDle5GjpMeOVrx0NKoTZCqrmpJVg3wNiNNUVjcoFfcpYcMzQUCZHBtQqLl7BzjJ8x2gs002VQ5yv0ZKtj8Jg=="
+  "resolved" "https://registry.npmjs.org/hexo/-/hexo-5.4.0.tgz"
+  "version" "5.4.0"
   dependencies:
     "abbrev" "^1.1.1"
     "archy" "^1.0.0"
@@ -902,7 +907,7 @@
     "hexo-i18n" "^1.0.0"
     "hexo-log" "^2.0.0"
     "hexo-util" "^2.4.0"
-    "js-yaml" "^3.12.0"
+    "js-yaml" "^4.0.0"
     "micromatch" "^4.0.2"
     "moment" "^2.22.2"
     "moment-timezone" "^0.5.21"
@@ -1063,13 +1068,20 @@
   "resolved" "https://registry.npm.taobao.org/js-stringify/download/js-stringify-1.0.2.tgz"
   "version" "1.0.2"
 
-"js-yaml@^3.12.0", "js-yaml@^3.13.1":
+"js-yaml@^3.13.1":
   "integrity" "sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g=="
   "resolved" "https://registry.npmjs.org/js-yaml/-/js-yaml-3.14.1.tgz"
   "version" "3.14.1"
   dependencies:
     "argparse" "^1.0.7"
     "esprima" "^4.0.0"
+
+"js-yaml@^4.0.0":
+  "integrity" "sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA=="
+  "resolved" "https://registry.npmjs.org/js-yaml/-/js-yaml-4.1.0.tgz"
+  "version" "4.1.0"
+  dependencies:
+    "argparse" "^2.0.1"
 
 "jsonparse@^1.2.0":
   "integrity" "sha1-P02uSpH6wxX3EGL4UhzCOfE2YoA="
@@ -1186,7 +1198,7 @@
   "resolved" "https://registry.npm.taobao.org/minimist/download/minimist-0.0.10.tgz?cache=0&sync_timestamp=1602337228360&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fminimist%2Fdownload%2Fminimist-0.0.10.tgz"
   "version" "0.0.10"
 
-"mkdirp@~0.5.0":
+"mkdirp@~0.5.0", "mkdirp@0.5.x":
   "integrity" "sha1-2Rzv1i0UNsoPQWIOJRKI1CAJne8="
   "resolved" "https://registry.npm.taobao.org/mkdirp/download/mkdirp-0.5.5.tgz"
   "version" "0.5.5"
@@ -1197,13 +1209,6 @@
   "integrity" "sha1-PrXtYmInVteaXw4qIh3+utdcL34="
   "resolved" "https://registry.npm.taobao.org/mkdirp/download/mkdirp-1.0.4.tgz"
   "version" "1.0.4"
-
-"mkdirp@0.5.x":
-  "integrity" "sha1-2Rzv1i0UNsoPQWIOJRKI1CAJne8="
-  "resolved" "https://registry.npm.taobao.org/mkdirp/download/mkdirp-0.5.5.tgz"
-  "version" "0.5.5"
-  dependencies:
-    "minimist" "^1.2.5"
 
 "moment-timezone@^0.5.21":
   "integrity" "sha512-Z8QNyuQHQAmWucp8Knmgei8YNo28aLjJq6Ma+jy1ZSpSk5nyfRT8xgUbSQvD2+2UajISfenndwvFuH3NGS+nvA=="
@@ -1645,7 +1650,7 @@
   "resolved" "https://registry.npm.taobao.org/source-map/download/source-map-0.7.3.tgz"
   "version" "0.7.3"
 
-"source-map@~0.1.7":
+"source-map@~0.1.7", "source-map@0.1.x":
   "integrity" "sha1-wkvBRspRfBRx9drL4lcbK3+eM0Y="
   "resolved" "https://registry.npm.taobao.org/source-map/download/source-map-0.1.43.tgz"
   "version" "0.1.43"
@@ -1661,13 +1666,6 @@
   "integrity" "sha1-dHIq8y6WFOnCh6jQu95IteLxomM="
   "resolved" "https://registry.npm.taobao.org/source-map/download/source-map-0.6.1.tgz"
   "version" "0.6.1"
-
-"source-map@0.1.x":
-  "integrity" "sha1-wkvBRspRfBRx9drL4lcbK3+eM0Y="
-  "resolved" "https://registry.npm.taobao.org/source-map/download/source-map-0.1.43.tgz"
-  "version" "0.1.43"
-  dependencies:
-    "amdefine" ">=0.0.4"
 
 "source-map@0.4.x":
   "integrity" "sha1-66T12pwNyZneaAMti092FzZSA2s="

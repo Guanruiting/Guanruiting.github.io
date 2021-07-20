@@ -1,9 +1,4 @@
----
-title: Anki - Powerful and intelligent flash cards
-tags:
----
-
-
+# Anki - Powerful and intelligent flash cards
 
 https://apps.ankiweb.net/
 

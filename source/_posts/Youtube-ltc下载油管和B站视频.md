@@ -12,14 +12,14 @@ Youtube-lt是一个用Python开发的命令行下载工具，支持下载youtube
 **UNIX** (Linux, macOS, etc.)  
 使用 wget:
 
-```
+```bash
 sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
 sudo chmod a+rx /usr/local/bin/youtube-dl
 ```
 
 使用 curl:
 
-```
+```bash
 sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
 sudo chmod a+rx /usr/local/bin/youtube-dl
 ```
@@ -50,7 +50,7 @@ youtube-dlc功能强大，提供了非常多的设置选项，我们可以通过
 
   通过`--proxy URL`代理选项，支持设置http或sock代理：
 
-  ```
+  ```bash
   youtube-dl --proxy socks5://127.0.0.1:1080 url
   ```
 
@@ -62,7 +62,7 @@ youtube-dlc功能强大，提供了非常多的设置选项，我们可以通过
 
   文件内容示例：
 
-  ```
+  ```bash
   --proxy socks5://127.0.0.1:1080
   ```
 
@@ -70,7 +70,7 @@ youtube-dlc功能强大，提供了非常多的设置选项，我们可以通过
 
   `-F` 查看所有视频格式，下载指定质量的视频和音频并自动合并：  `youtube-dl -f [format code] [url]`
 
-  ```cmd
+  ```bash
   youtube-dl -f 247+251 https://www.youtube.com/watch?v=UyJ8Qbh_LH0
   # or
   youtube-dl -f bestvideo+bestaudio https://www.youtube.com/watch?v=UyJ8Qbh_LH0
@@ -82,7 +82,7 @@ youtube-dlc功能强大，提供了非常多的设置选项，我们可以通过
 
   FFmpeg usage: ffmpeg [options] [[infile options] -i infile]... {[outfile options] outfile}...
 
-  ```
+  ```bash
   brew install ffmpeg
   clear
   ffmpeg -h
@@ -93,7 +93,7 @@ youtube-dlc功能强大，提供了非常多的设置选项，我们可以通过
 
   Youtube-dl允许我们仅从Youtube视频下载音频，默认情况下，Youtube-dl将以Ogg（opus）格式下载音频。如果想下载任何其他格式，例如mp3，以下命令将从给定视频下载音频，将其转换为MP3并将其保存在当前目录中：
 
-  ```
+  ```bash
   youtube-dl -x --audio-format mp3 https://www.youtube.com/watch?v=7E-cwdnsiow
   ```
 
@@ -103,7 +103,7 @@ youtube-dlc功能强大，提供了非常多的设置选项，我们可以通过
 
   下载字幕，并按顺序选择 ass/srt/best 字幕，把字幕转成 srt 格式
 
-  ```
+  ```bash
   youtube-dl --write-sub --sub-format "ass/srt/best" --convert-subs "srt" "video_url"
   ```
 
@@ -111,9 +111,15 @@ youtube-dlc功能强大，提供了非常多的设置选项，我们可以通过
   `--sub-format`：指定字幕格式，按顺序选，不存在则选下一个。  
   `--convert-subs`： 转换字幕，格式有限制，通用为 srt ；若不转，某些字幕可能是 .vtt 的；如果有 ass 字幕可下载，则无须加此项。
 
+  ```bash
+  youtube-dl --proxy 127.0.0.1:19180 --write-sub --sub-format "ass/srt/best" --convert-subs "srt" https://www.youtube.com/watch?v=Q63qjIXMqwU&t=2s
+  ```
+
+  
+
 - 自定义文件名称
 
-  ```cmd
+  ```bash
   # 自定义视频名称
   youtube-dl -o 'some name' https://www.youtube.com/watch?v=7E-cwdnsiow
   # 下载播放列表并重命名文件
@@ -122,7 +128,7 @@ youtube-dlc功能强大，提供了非常多的设置选项，我们可以通过
 
 - 使用登陆账户下载
 
-  ```cmd
+  ```bash
   youtube-dl -u USERNAME -p PASSWORD UDEMY-Course-URL
   ```
 
