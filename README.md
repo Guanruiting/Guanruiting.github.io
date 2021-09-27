@@ -39,7 +39,7 @@ git push origin hexo
 hexo g -d
 ```
 
-### 拉取代吗到本地
+### 拉取代码到本地
 ```
 git clone <hexo分支>
 
