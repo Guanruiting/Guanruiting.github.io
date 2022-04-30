@@ -3,6 +3,7 @@ title: Markdown写作自动上传图片至Github - Typora编辑器 + PicGo河床
 date: 2020-12-16 18:09:27
 tags:
 - Tools
+categories: 中文
 ---
 
 使用Typora+PicGo可以在Markdown写作过程中非常方便快速地插入图片。

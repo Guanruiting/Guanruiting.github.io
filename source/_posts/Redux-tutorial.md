@@ -4,6 +4,7 @@ date: 2020-11-18 18:12:36
 tags: 
 - React
 - Redux
+categories: 中文
 ---
 
 ## Tutorial 0 - introduction

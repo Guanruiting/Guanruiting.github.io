@@ -3,6 +3,7 @@ title: Deploy Your Next JS Application in Subfolder
 date: 2021-09-27 12:03:07
 tags:
 - Nextjs
+categories: English
 ---
 
 You sometimes want to deploy your Next JS under `/blog`, `/docs`, or `/dashboard` folder. But by default, you can only deploy your Next JS on your project root folder.

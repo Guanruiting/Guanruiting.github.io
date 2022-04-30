@@ -51,3 +51,7 @@ npm install hexo-deployer-git
 
 // 记得，不需要hexo init这条指令
 ```
+
+## 分类 Categories
+https://macshion.github.io/tags/
+https://macshion.github.io/categories/

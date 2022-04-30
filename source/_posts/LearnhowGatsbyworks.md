@@ -5,6 +5,7 @@ tags:
 - Gatsby
 - React
 - SSR
+categories: English
 ---
 
 The goal of this tutorial is to guide you through setting up and deploying your first Gatsby site. Along the way, you'll learn some general web development topics as well as the fundamentals of building a Gatsby site.

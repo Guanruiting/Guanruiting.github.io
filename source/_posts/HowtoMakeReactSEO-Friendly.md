@@ -6,6 +6,7 @@ tags:
 - SEO
 - Nextjs
 - Gatsby
+categories: English
 ---
 
 React-driven single-page applications (SPAs) are gaining momentum. Used by tech giants like Facebook, Twitter, and Google, React allows for building fast, responsive, and animation-rich websites and web applications with a smooth user experience.

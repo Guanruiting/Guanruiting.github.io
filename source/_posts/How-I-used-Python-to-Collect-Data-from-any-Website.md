@@ -1,8 +1,10 @@
 ---
-title: How To Use Styled-Components In React
+title: Used Python to Collect Data from any Website
 date: 2020-12-16 12:58:09
 tags:
 - Python
+- BeautifulSoup
+categories: English
 ---
 
 There are moments while working when you realize that you may need a large amount of data in a short amount of time. These could be instances when your boss or customer wants a specific set of information from a specific website. Maybe they want you to collect over a thousand pieces of information or data from said website. So what do you do?

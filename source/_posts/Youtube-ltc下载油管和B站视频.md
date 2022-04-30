@@ -3,6 +3,7 @@ title: 'Youtube-ltc下载油管和B站视频'
 time: 2021-01-09 22:31
 tags:
 - Tools
+categories: 中文
 ---
 
 Youtube-lt是一个用Python开发的命令行下载工具，支持下载youtube、Bilibili等网站的视频。

@@ -3,6 +3,7 @@ title: SVG 基础知识（一） - SVG 视口
 date: 2019-08-12 00:09:12
 tags:
 - SVG
+categories: 中文
 ---
 
 SVG 是可缩放矢量图形（Scalable Vector Graphics, SVG），一种用来描述二维矢量图形的 XML 标记语言。SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失。SVG是万维网联盟的标准，与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体。

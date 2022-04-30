@@ -4,6 +4,7 @@ time: 2020-12-23 10:55:00
 tags:
 - Javascript
 - Fetch
+categories: English
 ---
 
 ### Introduction

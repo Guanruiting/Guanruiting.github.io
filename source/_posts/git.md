@@ -3,6 +3,7 @@ title: git config配置用户
 date: 2019-04-17 22:14:10
 tags:
 - Git
+category: 中文
 ---
 
 用户配置

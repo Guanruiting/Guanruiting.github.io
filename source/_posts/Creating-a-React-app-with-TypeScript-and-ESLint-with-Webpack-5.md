@@ -1,3 +1,14 @@
+---
+title: Creating a React app with TypeScript and ESLint with Webpack 5
+date: 2022-05-01 04:11:39
+categories: English
+tags:
+- TypeScript
+- Webpack
+- React
+categories: English
+---
+
 This post will cover how to use [webpack 5](https://webpack.js.org/) to bundle a React and TypeScript app. Our setup will include type checking with TypeScript and linting with [ESLint](https://eslint.org/) in the Webpack process, which will help code quality. We will configure Webpack to give us a great development experience with hot reloading and an optimized production bundle.
 
  [![](https://www.carlrippon.com/static/9d15c1b7d155ac0ced0ca045c275950d/799d3/banner.png)](https://www.carlrippon.com/static/9d15c1b7d155ac0ced0ca045c275950d/14e05/banner.png) 

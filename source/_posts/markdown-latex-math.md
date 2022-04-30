@@ -1,8 +1,9 @@
 ---
-title: markdown latex math
+title: LaTeX - 在Markdown中插入数学公式
 date: 2022-05-01 03:50:46
-categories:
-tags:
+categories: 中文 
+tags: 
+- Math
 ---
 
 在Markdown中插入数学公式的语法是 `$数学公式$` 和 `$$数学公式$$`.
@@ -71,14 +72,6 @@ $$
 
 ### 关系运算符
 
-```
-\pm \times \div \mid \nmid \cdot \circ \ast
-\bigodot \bigotimes \bigoplus
-\leq \geq \neq \approx \equiv
-\sum \prod
-```
-
-
 $$
 \pm \ \times \ \div \ \mid \ \nmid \ \cdot \ \circ \ \ast \ \bigodot \ \bigotimes \ \bigoplus \ \leq \ \geq \ \neq \ \approx \ \equiv \ \sum \ \prod
 $$
@@ -86,10 +79,6 @@ $$
 ![image-20220501033406229](https://s2.loli.net/2022/05/01/NWYD3vPce9shnHX.png)
 
 ### 对数运算符
-
-```
-\log \ \lg \ \ln
-```
 
 $$
 \log \ \lg \ \ln
@@ -99,10 +88,6 @@ $$
 
 ### 三角运算符
 
-```
-\bot \ \angle \ \sin \ \cos \ \tan \ \cot \ \sec \ \csc
-```
-
 $$
 \bot \ \angle \ \sin \ \cos \ \tan \ \cot \ \sec \ \csc
 $$
@@ -110,10 +95,6 @@ $$
 ![image-20220501033513958](https://s2.loli.net/2022/05/01/vqOX2QVDKsc56xI.png)
 
 ### 微积分运算符
-
-```
-\prime \ \int \ \iint \ \iiint \ \oint \ \lim \ \infty \ \nabla \ \mathrm{d}
-```
 
 $$
 \prime \ \int \ \iint \ \iiint \ \oint \ \lim \ \infty \ \nabla \ \mathrm{d}
@@ -123,11 +104,6 @@ $$
 
 ### 集合运算符
 
-```
-\emptyset \in \notin \subset \subseteq \supseteq
-\bigcap \bigcup \bigvee \bigwedge \biguplus \bigsqcup
-```
-
 $$
 \emptyset \ \in \ \notin \ \subset \ \subseteq \ \supseteq \ \bigcap \ \bigcup \ \bigvee \ \bigwedge \ \biguplus \bigsqcup
 $$
@@ -135,18 +111,6 @@ $$
 ![image-20220501033612481](https://s2.loli.net/2022/05/01/geXdC9TV7sk5Ij2.png)
 
 ### 希腊字母
-
-```
-A \  \alpha \ B \  \beta \  \Gamma \  \gamma \ 
-\Delta \  \delta \ E \  \epsilon \ Z \  \zeta \ 
-H \  \eta \  \Theta \  \theta \ I \  \iota \ 
-K \  \kappa \ \Lambda \  \lambda \ M \  \mu \ N \  \nu \ 
-Xi \  \xi \ O \  \omicron \  \Pi \  \pi \ 
-P \  \rho \  \Sigma \  \sigma \ T \  \tau \  
-\Upsilon \  \upsilon \  \Phi \  \phi \ 
-X \  \chi \  \Psi \  \psi \  \Omega \  \omega
-```
-
 
 $$
 A \  \alpha \ B \  \beta \  \Gamma \  \gamma \ \\
@@ -158,6 +122,5 @@ P \  \rho \  \Sigma \  \sigma \ T \  \tau \ \\
  \Upsilon \  \upsilon \  \Phi \  \phi \ \\
  X \  \chi \  \Psi \  \psi \  \Omega \  \omega
 $$
-
 
 ![image-20220501034204219](https://s2.loli.net/2022/05/01/42K15g7sFchql3S.png)

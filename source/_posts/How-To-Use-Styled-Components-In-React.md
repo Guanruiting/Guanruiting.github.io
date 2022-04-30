@@ -3,6 +3,8 @@ title: How To Use Styled-Components In React
 date: 2020-12-16 12:58:09
 tags:
 - React
+- Styled-Components
+categories: English
 ---
 
 While the component-driven approach has ushered in a new frontier in the way we build web applications, it isn’t without its imperfections — one being its usability and scalability with CSS. This has given birth to a new way to construct and manage our styles in a **component-specific** manner, otherwise knows as CSS-in-JS.

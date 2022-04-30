@@ -4,6 +4,7 @@ date: 2019-04-25 03:11:45
 tags: 
 - Javascript
 - Object
+categories: 中文
 ---
 
 最近参加了高级前端的培训，虽然是线上课程，但跟着大佬学习真的是事半功倍。课程中出现很多我听不懂的技术词语，比如[“属性描述对象”](https://guanruiting.github.io/20190418/property-descriptor/)，比如一些没见过的JS内置方法等等。通过课后查资料补习，我发现自己真的是……基础太差了😓😓😓！

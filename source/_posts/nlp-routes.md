@@ -3,6 +3,7 @@ title: NLP自然语言处理学习路线
 date: 2020-12-17 20:21:35
 tags:
 - NLP
+categories: 中文
 ---
 
 

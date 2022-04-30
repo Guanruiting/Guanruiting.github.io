@@ -5,6 +5,7 @@ tags:
 - React
 - Umi
 - Nextjs
+categories: English
 ---
 
 ![comparing-react-ssr-frameworks-umi-vs-next](https://raw.githubusercontent.com/macshion/PicBed/main/2021/20210325114733.png)

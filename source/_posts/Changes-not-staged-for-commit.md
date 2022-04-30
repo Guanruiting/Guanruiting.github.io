@@ -4,6 +4,7 @@ date: 2019-04-16 03:33:29
 tags:
 - Git
 - Github
+category: 中文
 ---
 
 github仓库，本地删除了文件，使用  ` git add . `  命令提交代码后仍报错：

@@ -4,6 +4,7 @@ date: 2019-04-27 12:21:47
 tags:
 - jQuery
 - Javascript
+category: 中文
 ---
 
 ### Javascript立即执行函数

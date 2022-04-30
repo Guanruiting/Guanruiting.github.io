@@ -4,6 +4,7 @@ date: 2019-04-27 16:13:44
 tags:
 - jQuery
 - Javascript
+category: 中文
 ---
 
 jQuery.extend() 函数用于将一个或多个对象的内容合并到target目标对象。如果多个对象具有相同的属性，则后者会覆盖前者的属性值。

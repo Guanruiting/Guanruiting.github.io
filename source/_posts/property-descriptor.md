@@ -4,6 +4,7 @@ date: 2019-04-18 23:48:42
 tags:
 - Javascript
 - Object
+categories: 中文
 ---
 
 假设有一个对象：

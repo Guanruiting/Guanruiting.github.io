@@ -3,6 +3,7 @@ title: Using Throttling and Debouncing with React hooks
 date: 2021-04-06 11:34:00
 tags:
 - React
+categories: 中文
 ---
 
 https://dev.to/pulkitnagpal/using-throttling-and-debouncing-with-react-hooks-57f1
