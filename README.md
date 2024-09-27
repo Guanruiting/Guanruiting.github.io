@@ -3,6 +3,12 @@
 
 《记录Hexo搭建GitHub博客的步骤》: http://localhost:4000/20190416/build-a-blog-by-Hexo/
 
+```
+// 安装hexo
+npm install hexo
+npm install
+npm install hexo-deployer-git
+```
 ## 常用操作
 ### 添加一篇文章
 ```

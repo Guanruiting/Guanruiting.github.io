@@ -26,6 +26,7 @@ category: 中文
 
  ```
  npm install hexo
+ npm install -g hexo-cli
  
  hexo init
  
