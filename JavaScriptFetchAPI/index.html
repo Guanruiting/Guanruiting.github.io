@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>How To Use the JavaScript Fetch API to Get Data | Macshion&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="IntroductionThere was a time when XMLHttpRequest was used to make API requests. It didn’t include promises, and it didn’t make for clean JavaScript code. Using jQuery, you used the cleaner syntax with">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How To Use the JavaScript Fetch API to Get Data">
+<meta property="og:url" content="https://macshion.github.io/JavaScriptFetchAPI/index.html">
+<meta property="og:site_name" content="Macshion&#39;s blog">
+<meta property="og:description" content="IntroductionThere was a time when XMLHttpRequest was used to make API requests. It didn’t include promises, and it didn’t make for clean JavaScript code. Using jQuery, you used the cleaner syntax with">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-09-27T15:58:37.994Z">
+<meta property="article:modified_time" content="2024-09-27T16:02:35.027Z">
+<meta property="article:author" content="Macshion">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Fetch">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Macshion's blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Macshion&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">每天进步一点点</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://macshion.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-JavaScriptFetchAPI" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/JavaScriptFetchAPI/" class="article-date">
+  <time class="dt-published" datetime="2024-09-27T15:58:37.994Z" itemprop="datePublished">2024-09-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/English/">English</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      How To Use the JavaScript Fetch API to Get Data
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>There was a time when <code>XMLHttpRequest</code> was used to make API requests. It didn’t include promises, and it didn’t make for clean JavaScript code. Using jQuery, you used the cleaner syntax with <code>jQuery.ajax()</code>.</p>
+<p>Now, JavaScript has its own built-in way to make API requests. This is the Fetch API, a new standard to make server requests with promises, but includes many other features.</p>
+<p>In this tutorial, you will create both GET and POST requests using the Fetch API.</p>
+<span id="more"></span>
+
+<h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>To complete this tutorial, you will need the following:</p>
+<ul>
+<li>The latest version of Node installed on your machine. To install Node on macOS, follow the steps outlined in this <a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-install-node-js-and-create-a-local-development-environment-on-macos">How to Install Node.js and Create a Local Development Environment on macOS</a> tutorial.</li>
+<li>A basic understanding of coding in JavaScript, which you can learn more about from the <a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorial_series/how-to-code-in-javascript">How to Code in JavaScript</a> series.</li>
+<li>An understanding of promises in JavaScript. Read the <a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/understanding-the-event-loop-callbacks-promises-and-async-await-in-javascript#promises">Promises section</a> of this article on <a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/understanding-the-event-loop-callbacks-promises-and-async-await-in-javascript">the event loop, callbacks, promises, and async&#x2F;await</a> in JavaScript.</li>
+</ul>
+<h2 id="Step-1-—-Getting-Started-with-Fetch-API-Syntax"><a href="#Step-1-—-Getting-Started-with-Fetch-API-Syntax" class="headerlink" title="Step 1 — Getting Started with Fetch API Syntax"></a>Step 1 — Getting Started with Fetch API Syntax</h2><p>To use the Fetch API, call the <code>fetch</code> method, which accepts the URL of the API as a parameter:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(url)</span><br></pre></td></tr></table></figure>
+
+<p>After the <code>fetch()</code> method, include the promise method <code>then()</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>The <code>fetch()</code> method returns a promise. If the promise returned is <code>resolve</code>, the function within the <code>then()</code> method is executed. That function contains the code for handling the data received from the API.</p>
+<p>Below the <code>then()</code> method, include the <code>catch()</code> method:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.<span class="title function_">catch</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>The API you call using <code>fetch()</code> may be down or other errors may occur. If this happens, the <code>reject</code> promise will be returned. The <code>catch</code> method is used to handle <code>reject</code>. The code within <code>catch()</code> will be executed if an error occurs when calling the API of your choice.</p>
+<p>To summarize, using the Fetch API will look like this:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(url)</span><br><span class="line">.<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">.<span class="title function_">catch</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>With an understanding of the syntax for using the Fetch API, you can now move on to using <code>fetch()</code> on a real API.</p>
+<h2 id="Step-2-—-Using-Fetch-to-get-Data-from-an-API"><a href="#Step-2-—-Using-Fetch-to-get-Data-from-an-API" class="headerlink" title="Step 2 — Using Fetch to get Data from an API"></a>Step 2 — Using Fetch to get Data from an API</h2><p>The following code samples will be based on the <a target="_blank" rel="noopener" href="https://randomuser.me/">Random User API</a>. Using the API, you will get ten users and display them on the page using Vanilla JavaScript.</p>
+<p>The idea is to get all the data from the Random User API and display it in list items inside the author’s list. Begin by creating an HTML file and adding a heading and unordered list with the <code>id</code> of <code>authors</code>:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Authors<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;authors&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Now add <code>script</code> tags to the bottom of your HTML file and use a DOM selector to grab the <code>ul</code>. Use <code>getElementById</code> with <code>authors</code> as the argument. Remember, <code>authors</code> is the <code>id</code> for the previously created <code>ul</code>:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> ul = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;authors&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Create a constant variable called <code>url</code> which will hold the API URL that will return ten random users:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = <span class="string">&#x27;https://randomuser.me/api/?results=10&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>With <code>ul</code> and <code>url</code> in place, it’s time to create the functions that will be used to create the list items. Create a function called <code>createNode</code> that takes a parameter called <code>element</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">createNode</span>(<span class="params">element</span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Later, when <code>createNode</code> is called, you will need to pass the name of an actual HTML element to create.</p>
+<p>Within the function, add a <code>return</code> statement that returns <code>element</code> using <code>document.createElement()</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">createNode</span>(<span class="params">element</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">document</span>.<span class="title function_">createElement</span>(element);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>You will also need to create a function called <code>append</code> that takes two parameters: <code>parent</code> and <code>el</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">append</span>(<span class="params">parent, el</span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>This function will append <code>el</code> to <code>parent</code> using <code>document.createElement</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">append</span>(<span class="params">parent, el</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> parent.<span class="title function_">appendChild</span>(el);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Both <code>createNode</code> and <code>append</code> are ready to go. Now using the Fetch API, call the Random User API using <code>fetch()</code> with <code>url</code> as the argument:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(url)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(url)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">data</span>) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="keyword">function</span>(<span class="params">error</span>) &#123;</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>In the code above, you are calling the Fetch API and passing in the URL to the Random User API. Then a response is received. However, the response you get is not JSON, but an object with a series of methods that can be used depending on what you want to do with the information. To convert the object returned into JSON, use the <code>json()</code> method.</p>
+<p>Add the <code>then()</code> method which will contain a function with a parameter called <code>resp</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(url)</span><br><span class="line">.<span class="title function_">then</span>(<span class="function">(<span class="params">resp</span>) =&gt;</span> )</span><br></pre></td></tr></table></figure>
+
+<p>The <code>resp</code> parameter takes the value of the object returned from <code>fetch(url)</code>. Use the <code>json()</code> method to convert <code>resp</code> into JSON data:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(url)</span><br><span class="line">.<span class="title function_">then</span>(<span class="function">(<span class="params">resp</span>) =&gt;</span> resp.<span class="title function_">json</span>())</span><br></pre></td></tr></table></figure>
+
+<p>The JSON data still needs to be processed. Add another <code>then()</code> statement with a function that has an argument called <code>data</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">data</span>) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Within this function, create a variable called <code>authors</code> that is set equal to <code>data.results</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> authors = data.<span class="property">results</span>;</span><br></pre></td></tr></table></figure>
+
+<p>For each author in <code>authors</code>, you will want to create a list item that displays a picture of them and displays their name. The <code>map()</code> method is great for this:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> authors = data.<span class="property">results</span>;</span><br><span class="line"><span class="keyword">return</span> authors.<span class="title function_">map</span>(<span class="keyword">function</span>(<span class="params">author</span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Within your <code>map</code> function, create a variable called <code>li</code> that will be set equal to <code>createNode</code> with <code>li</code> (the HTML element) as the argument:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> authors.<span class="title function_">map</span>(<span class="keyword">function</span>(<span class="params">author</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> li = <span class="title function_">createNode</span>(<span class="string">&#x27;li&#x27;</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Repeat this to create a <code>span</code> element and an <code>img</code> element:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> li = <span class="title function_">createNode</span>(<span class="string">&#x27;li&#x27;</span>);</span><br><span class="line"><span class="keyword">let</span> img = <span class="title function_">createNode</span>(<span class="string">&#x27;img&#x27;</span>);</span><br><span class="line"><span class="keyword">let</span> span = <span class="title function_">createNode</span>(<span class="string">&#x27;span&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>The API offers a name for the author and a picture that goes along with the name. Set the <code>img.src</code> to the author picture:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> img = <span class="title function_">createNode</span>(<span class="string">&#x27;img&#x27;</span>);</span><br><span class="line"><span class="keyword">let</span> span = <span class="title function_">createNode</span>(<span class="string">&#x27;span&#x27;</span>);</span><br><span class="line"></span><br><span class="line">img.<span class="property">src</span> = author.<span class="property">picture</span>.<span class="property">medium</span>;</span><br></pre></td></tr></table></figure>
+
+<p>The <code>span</code> element should contain the the first and last name of the <code>author</code>. The <code>innerHTML</code> property and string interpolation will allow you to do this:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img.<span class="property">src</span> = author.<span class="property">picture</span>.<span class="property">medium</span>;</span><br><span class="line">span.<span class="property">innerHTML</span> = <span class="string">`<span class="subst">$&#123;author.name.first&#125;</span> <span class="subst">$&#123;author.name.last&#125;</span>`</span>;</span><br></pre></td></tr></table></figure>
+
+<p>With the image and list element created along with the <code>span</code> element, you can use the <code>append</code> function that was previously created to display these elements on the page:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">append</span>(li, img);</span><br><span class="line"><span class="title function_">append</span>(li, span);</span><br><span class="line"><span class="title function_">append</span>(ul, li);</span><br></pre></td></tr></table></figure>
+
+<p>With both <code>then()</code> functions completed, you can now add the <code>catch()</code> function. This function will log the potential error to the console:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.<span class="title function_">catch</span>(<span class="keyword">function</span>(<span class="params">error</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>This is the full code of the request you created:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">createNode</span>(<span class="params">element</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">document</span>.<span class="title function_">createElement</span>(element);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">append</span>(<span class="params">parent, el</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> parent.<span class="title function_">appendChild</span>(el);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ul = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;authors&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> url = <span class="string">&#x27;https://randomuser.me/api/?results=10&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">fetch</span>(url)</span><br><span class="line">.<span class="title function_">then</span>(<span class="function">(<span class="params">resp</span>) =&gt;</span> resp.<span class="title function_">json</span>())</span><br><span class="line">.<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">data</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> authors = data.<span class="property">results</span>;</span><br><span class="line">  <span class="keyword">return</span> authors.<span class="title function_">map</span>(<span class="keyword">function</span>(<span class="params">author</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> li = <span class="title function_">createNode</span>(<span class="string">&#x27;li&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> img = <span class="title function_">createNode</span>(<span class="string">&#x27;img&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> span = <span class="title function_">createNode</span>(<span class="string">&#x27;span&#x27;</span>);</span><br><span class="line">    img.<span class="property">src</span> = author.<span class="property">picture</span>.<span class="property">medium</span>;</span><br><span class="line">    span.<span class="property">innerHTML</span> = <span class="string">`<span class="subst">$&#123;author.name.first&#125;</span> <span class="subst">$&#123;author.name.last&#125;</span>`</span>;</span><br><span class="line">    <span class="title function_">append</span>(li, img);</span><br><span class="line">    <span class="title function_">append</span>(li, span);</span><br><span class="line">    <span class="title function_">append</span>(ul, li);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">.<span class="title function_">catch</span>(<span class="keyword">function</span>(<span class="params">error</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>You just successfully performed a GET request using the Random User API and the Fetch API. In the next step, you will learn how to perform POST requests.</p>
+<h2 id="Step-3-—-Handling-POST-Requests"><a href="#Step-3-—-Handling-POST-Requests" class="headerlink" title="Step 3 — Handling POST Requests"></a>Step 3 — Handling POST Requests</h2><p>Fetch defaults to GET requests, but you can use all other types of requests, change the headers, and send data. To do this, you need to set your object and pass it as the second argument of the fetch function.</p>
+<p>Before creating a POST request, create the data you would like to send to the API. This will be an object called <code>data</code> with the key <code>name</code> and value <code>Sammy</code> (or your name):</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = <span class="string">&#x27;https://randomuser.me/api&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> data = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Sammy&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Make sure to include a constant variable that holds the link the Random User API.</p>
+<p>Since this is a POST request, you will need to state that explicitly. Create an object called <code>fetchData</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fetchData = &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>This object needs to include three keys: <code>method</code>, <code>body</code>, and <code>headers</code>. The <code>method</code> key should have the value <code>&#39;POST&#39;</code>. <code>body</code> should be set equal to the <code>data</code> object that was just created. <code>headers</code> should have the value of <code>new Headers()</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fetchData = &#123;</span><br><span class="line">  <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">  <span class="attr">body</span>: data,</span><br><span class="line">  <span class="attr">headers</span>: <span class="keyword">new</span> <span class="title class_">Headers</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The <code>Headers</code> interface is a property of the Fetch API, which allows you to perform various actions on HTTP request and response headers. If you would like to learn more about this, this article called <a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/nodejs-express-routing">How To Define Routes and HTTP Request Methods in Express</a> can give you more information.</p>
+<p>With this code in place, the POST request can be made using the Fetch API. You will include <code>url</code> and <code>fetchData</code> as arguments for your <code>fetch</code> POST request:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(url, fetchData)</span><br></pre></td></tr></table></figure>
+
+<p>The <code>then()</code> function will include code that handles the response received from the Random User API server:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(url, fetchData)</span><br><span class="line">.<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// Handle response you get from the server</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>To create an object and use the <code>fetch()</code> function , there is also another option. Instead of creating an object like <code>fetchData</code>, you can use the request constructor to create your request object. To do this, create a variable called <code>request</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = <span class="string">&#x27;https://randomuser.me/api&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> data = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Sara&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> request =</span><br></pre></td></tr></table></figure>
+
+<p>The <code>request</code> variable should be set equal to <code>new Request</code>. The <code>new Request</code> construct takes two arguments: the API url (<code>url</code>) and an object. The object should also include the <code>method</code>, <code>body</code>, and <code>headers</code> keys just like <code>fetchData</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request = <span class="keyword">new</span> <span class="title class_">Request</span>(url, &#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">    <span class="attr">body</span>: data,</span><br><span class="line">    <span class="attr">headers</span>: <span class="keyword">new</span> <span class="title class_">Headers</span>()</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Now, <code>request</code> can be used as the sole argument for <code>fetch()</code> since it also includes the API url:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(request)</span><br><span class="line">.<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// Handle response we get from the API</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Altogether, your code will look like this:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = <span class="string">&#x27;https://randomuser.me/api&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> data = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Sara&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> request = <span class="keyword">new</span> <span class="title class_">Request</span>(url, &#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">    <span class="attr">body</span>: data,</span><br><span class="line">    <span class="attr">headers</span>: <span class="keyword">new</span> <span class="title class_">Headers</span>()</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">fetch</span>(request)</span><br><span class="line">.<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// Handle response we get from the API</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Now you know two methods for creating and executing POST requests with the Fetch API.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>While the Fetch API is not yet supported by all the browsers, it is a great alternative to XMLHttpRequest. If you would like to learn how to call Web APIs using React, <a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-call-web-apis-with-the-useeffect-hook-in-react">check out this article</a> on this very topic.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://macshion.github.io/JavaScriptFetchAPI/" data-id="cm1kx87dy000h6g4cfkqudq2v" data-title="How To Use the JavaScript Fetch API to Get Data" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Fetch/" rel="tag">Fetch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/LearnhowGatsbyworks/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Tutorial: Learn how Gatsby works
+        
+      </div>
+    </a>
+  
+  
+    <a href="/HowToUseAxioswithReact/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">How To Use Axios with React</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/English/">English</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E6%96%87/">中文</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axios/" rel="tag">Axios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BeautifulSoup/" rel="tag">BeautifulSoup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/" rel="tag">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dot/" rel="tag">Dot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Fetch/" rel="tag">Fetch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gatsby/" rel="tag">Gatsby</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graphviz/" rel="tag">Graphviz</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Less/" rel="tag">Less</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nextjs/" rel="tag">Nextjs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object/" rel="tag">Object</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redux/" rel="tag">Redux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Roadmap/" rel="tag">Roadmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SEO/" rel="tag">SEO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSR/" rel="tag">SSR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVG/" rel="tag">SVG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Styled-Components/" rel="tag">Styled-Components</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/" rel="tag">Tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Typescript/" rel="tag">Typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Umi/" rel="tag">Umi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VUE/" rel="tag">VUE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/" rel="tag">Webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/" rel="tag">前端面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/" rel="tag">微前端</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Axios/" style="font-size: 10px;">Axios</a> <a href="/tags/BeautifulSoup/" style="font-size: 10px;">BeautifulSoup</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Dot/" style="font-size: 10px;">Dot</a> <a href="/tags/Fetch/" style="font-size: 10px;">Fetch</a> <a href="/tags/Gatsby/" style="font-size: 12.5px;">Gatsby</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/Github/" style="font-size: 12.5px;">Github</a> <a href="/tags/Graphviz/" style="font-size: 10px;">Graphviz</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Javascript/" style="font-size: 17.5px;">Javascript</a> <a href="/tags/Less/" style="font-size: 10px;">Less</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/NLP/" style="font-size: 12.5px;">NLP</a> <a href="/tags/Nextjs/" style="font-size: 15px;">Nextjs</a> <a href="/tags/Object/" style="font-size: 12.5px;">Object</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/Redux/" style="font-size: 10px;">Redux</a> <a href="/tags/Roadmap/" style="font-size: 10px;">Roadmap</a> <a href="/tags/SEO/" style="font-size: 10px;">SEO</a> <a href="/tags/SSR/" style="font-size: 10px;">SSR</a> <a href="/tags/SVG/" style="font-size: 10px;">SVG</a> <a href="/tags/Styled-Components/" style="font-size: 10px;">Styled-Components</a> <a href="/tags/Tools/" style="font-size: 15px;">Tools</a> <a href="/tags/Typescript/" style="font-size: 10px;">Typescript</a> <a href="/tags/Umi/" style="font-size: 10px;">Umi</a> <a href="/tags/VUE/" style="font-size: 10px;">VUE</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">前端面试</a> <a href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">微前端</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Youtube-ltc%E4%B8%8B%E8%BD%BD%E6%B2%B9%E7%AE%A1%E5%92%8CB%E7%AB%99%E8%A7%86%E9%A2%91/">Youtube-ltc下载油管和B站视频</a>
+          </li>
+        
+          <li>
+            <a href="/Typescript-type-and-interface/">Typescript手册指南阅读笔记 - 类型与接口</a>
+          </li>
+        
+          <li>
+            <a href="/LearnhowGatsbyworks/">Tutorial: Learn how Gatsby works</a>
+          </li>
+        
+          <li>
+            <a href="/JavaScriptFetchAPI/">How To Use the JavaScript Fetch API to Get Data</a>
+          </li>
+        
+          <li>
+            <a href="/HowToUseAxioswithReact/">How To Use Axios with React</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 Macshion<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

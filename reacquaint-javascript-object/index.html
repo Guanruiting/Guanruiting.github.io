@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>重新认识Javascript对象 | Macshion&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="最近参加了高级前端的培训，虽然是线上课程，但跟着大佬学习真的是事半功倍。课程中出现很多我听不懂的技术词语，比如“属性描述对象”，比如一些没见过的JS内置方法等等。通过课后查资料补习，我发现自己真的是……基础太差了😓😓😓！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重新认识Javascript对象">
+<meta property="og:url" content="https://macshion.github.io/reacquaint-javascript-object/index.html">
+<meta property="og:site_name" content="Macshion&#39;s blog">
+<meta property="og:description" content="最近参加了高级前端的培训，虽然是线上课程，但跟着大佬学习真的是事半功倍。课程中出现很多我听不懂的技术词语，比如“属性描述对象”，比如一些没见过的JS内置方法等等。通过课后查资料补习，我发现自己真的是……基础太差了😓😓😓！">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://macshion.github.io/img/2019/04/object_propertype.png">
+<meta property="og:image" content="https://macshion.github.io/img/2019/04/object_function.png">
+<meta property="article:published_time" content="2019-04-24T18:11:45.000Z">
+<meta property="article:modified_time" content="2024-09-27T16:02:35.036Z">
+<meta property="article:author" content="Macshion">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Object">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://macshion.github.io/img/2019/04/object_propertype.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Macshion's blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Macshion&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">每天进步一点点</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://macshion.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-reacquaint-javascript-object" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/reacquaint-javascript-object/" class="article-date">
+  <time class="dt-published" datetime="2019-04-24T18:11:45.000Z" itemprop="datePublished">2019-04-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%B8%AD%E6%96%87/">中文</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      重新认识Javascript对象
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>最近参加了高级前端的培训，虽然是线上课程，但跟着大佬学习真的是事半功倍。课程中出现很多我听不懂的技术词语，比如<a target="_blank" rel="noopener" href="https://guanruiting.github.io/20190418/property-descriptor/">“属性描述对象”</a>，比如一些没见过的JS内置方法等等。通过课后查资料补习，我发现自己真的是……基础太差了😓😓😓！</p>
+<span id="more"></span>
+
+<p>虽然以前一直都知道自己Javascript基础很差，也买了很多书：《Javascript DOM 编程艺术》、《Javascript权威指南》、《Javascript 高级程序设计》、《Javascript 忍者秘籍》等，却因为枯燥乏味，或晦涩难懂，或长篇大论等原因，始终还没看完……</p>
+<p>听了大佬的课，我意识到自己对Javascript对象、Javascript函数等的认识十分匮乏，简直只是窥见了冰山一角。今天就先重新认识下Javascript对象吧。</p>
+<p>基础的创建、用法自不必说，今天参考<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object">MDN的手册</a>看看Object有哪些东东。</p>
+<h2 id="Object的属性"><a href="#Object的属性" class="headerlink" title="Object的属性"></a>Object的属性</h2><p><img src="/img/2019/04/object_propertype.png" alt="Object propertype"></p>
+<h4 id="Object-propertype表示Object的原型对象。Object-propertype属性的属性特性就是所谓的属性描述对象了。"><a href="#Object-propertype表示Object的原型对象。Object-propertype属性的属性特性就是所谓的属性描述对象了。" class="headerlink" title="Object.propertype表示Object的原型对象。Object.propertype属性的属性特性就是所谓的属性描述对象了。"></a>Object.propertype表示Object的原型对象。Object.propertype属性的属性特性就是所谓的<strong>属性描述对象</strong>了。</h4><h3 id="1、Object-propertype"><a href="#1、Object-propertype" class="headerlink" title="1、Object.propertype"></a>1、Object.propertype</h3><blockquote>
+<p>几乎所有的 JavaScript 对象都是 Object 的实例；一个典型的对象继承了Object.prototype的属性（包括方法），尽管这些属性可能被遮蔽（亦称为覆盖）。但是有时候可能故意创建不具有典型原型链继承的对象，比如通过Object.create(null)创建的对象，或者通过Object.setPrototypeOf方法改变原型链。</p>
+<p>改变Object原型，会通过原型链改变所有对象；除非在原型链中进一步覆盖受这些变化影响的属性和方法。这提供了一个非常强大的、但有潜在危险的机制来覆盖或扩展对象行为。</p>
+</blockquote>
+<h3 id="2、已被废除的属性"><a href="#2、已被废除的属性" class="headerlink" title="2、已被废除的属性"></a>2、已被废除的属性</h3><ul>
+<li><em>Object​.prototype.<strong>proto</strong> 曾经用来存放对象的可枚举的属性的个数，但是已经被废除。</em></li>
+<li><em>Object.prototype.<strong>noSuchMethod</strong> 曾经是指当调用某个对象里不存在的方法时即将被执行的函数，但是现在这个函数已经不可用。这个属性被移除之后，ECMAScript 2015 (ES6) 规范转而采用 Proxy 对象， 可以实现类似或更多的效果。</em></li>
+<li><em>Object.prototype.<strong>parent</strong> 指向一个对象的上下文，已废弃。</em></li>
+</ul>
+<h3 id="3、Object-prototype-proto"><a href="#3、Object-prototype-proto" class="headerlink" title="3、Object.prototype.__proto__"></a>3、Object.prototype.__proto__</h3><blockquote>
+<p>该特性已经从 Web 标准中删除，虽然一些浏览器目前仍然支持它，但也许会在未来的某个时间停止支持。</p>
+<p>如果你关心性能，你就不应该在一个对象中修改它的 [[Prototype]]。</p>
+<p>创建一个新的且可以继承 [[Prototype]] 的对象，推荐使用 Object.create()。</p>
+<p>为了更好的支持，建议只使用 Object.getPrototypeOf()。</p>
+<p>使用__proto__是有争议的，也不鼓励使用它。</p>
+</blockquote>
+<p>虽然MDN这么说，但是不知道 Object.prototype.__proto__，就不可能理解Javascript原型链，但今天重点不是原型链。我们只看Object.prototype.__proto__ 是什么。</p>
+<blockquote>
+<p>__proto__的读取器(getter)暴露了一个对象的内部 [[Prototype]] 。</p>
+<p>对于使用对象字面量创建的对象，这个值是 Object.prototype。对于使用数组字面量创建的对象，这个值是 Array.prototype。对于functions，这个值是Function.prototype。对于使用 new fun 创建的对象，其中fun是由js提供的内建构造器函数之一(Array, Boolean, Date, Number, Object, String 等等），这个值总是fun.prototype。对于用js定义的其他js构造器函数创建的对象，这个值就是该构造器函数的prototype属性。</p>
+<p>__proto__ 的设置器(setter)允许对象的 [[Prototype]]被变更。前提是这个对象必须通过 Object.isExtensible() 判断为是可扩展的，如果不可扩展，则会抛出一个 TypeError 错误。要变更的值必须是一个object或null，提供其它值将不起任何作用。</p>
+<p>.__proto__属性是Object.prototype 一个简单的访问器属性，其中包含了get（获取）和set（设置）的方法，任何一个__proto__的存取属性都继承于Object.prototype，但一个访问属性如果不是来源于Object.prototype就不拥有.__proto__属性，譬如一个元素设置了其他的.__proto__属性在Object.prototype之前，将会覆盖原有的Object.prototype。</p>
+</blockquote>
+<h3 id="4、Object-prototype-constructor"><a href="#4、Object-prototype-constructor" class="headerlink" title="4、Object.prototype.constructor"></a>4、Object.prototype.constructor</h3><blockquote>
+<p>返回创建实例对象的 Object 构造函数的引用。注意，此属性的值是对函数本身的引用，而不是一个包含函数名称的字符串。</p>
+<p>所有对象都会从它的原型上继承一个 constructor 属性。该值只可读。</p>
+</blockquote>
+<h2 id="Object的方法"><a href="#Object的方法" class="headerlink" title="Object的方法"></a>Object的方法</h2><p><img src="/img/2019/04/object_function.png" alt="Object propertype"></p>
+<p>这么多的方法，真是吓到我了！一下子也学不完呀，粗略地过一遍咯？先混个眼熟😂。</p>
+<h3 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign()"></a>Object.assign()</h3><blockquote>
+<p>用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。</p>
+</blockquote>
+<h3 id="Object-create"><a href="#Object-create" class="headerlink" title="Object.create()"></a>Object.create()</h3><blockquote>
+<p>创建一个新对象，使用现有的对象来提供新创建的对象的__proto__。 </p>
+</blockquote>
+<h3 id="Object-defineProperties"><a href="#Object-defineProperties" class="headerlink" title="Object.defineProperties()"></a>Object.defineProperties()</h3><blockquote>
+<p>直接在一个对象上定义新的属性或修改现有属性，并返回该对象。</p>
+</blockquote>
+<h3 id="Object-defineProperty"><a href="#Object-defineProperty" class="headerlink" title="Object.defineProperty()"></a>Object.defineProperty()</h3><blockquote>
+<p>直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。</p>
+</blockquote>
+<h3 id="Object-entries"><a href="#Object-entries" class="headerlink" title="Object.entries()"></a>Object.entries()</h3><blockquote>
+<p>返回一个给定对象自身可枚举属性的键值对数组，其排列与使用 for…in 循环遍历该对象时返回的顺序一致（区别在于 for-in 循环也枚举原型链中的属性）。</p>
+</blockquote>
+<h3 id="Object-freeze"><a href="#Object-freeze" class="headerlink" title="Object.freeze()"></a>Object.freeze()</h3><blockquote>
+<p>冻结一个对象。一个被冻结的对象再也不能被修改；</p>
+<p>冻结了一个对象则不能向这个对象添加新的属性，不能删除已有属性，不能修改该对象已有属性的可枚举性、可配置性、可写性，以及不能修改已有属性的值。</p>
+<p>此外，冻结一个对象后该对象的原型也不能被修改。</p>
+<p>freeze() 返回和传入的参数相同的对象。</p>
+</blockquote>
+<h3 id="Object-fromEntries"><a href="#Object-fromEntries" class="headerlink" title="Object.fromEntries()"></a>Object.fromEntries()</h3><blockquote>
+<p>把键值对列表转换为一个对象。</p>
+<p>返回一个包含提供的可迭代对象条目的对应属性的新对象。</p>
+</blockquote>
+<h6 id="Object-getNotifer"><a href="#Object-getNotifer" class="headerlink" title="Object.getNotifer()"></a><em>Object.getNotifer()</em></h6><blockquote>
+<p><em>用于创建可人工触发 change 事件的对象，但该方法在浏览器中已被废弃。</em></p>
+</blockquote>
+<h3 id="Object-getOwnPropertyDescriptor"><a href="#Object-getOwnPropertyDescriptor" class="headerlink" title="Object.getOwnPropertyDescriptor()"></a>Object.getOwnPropertyDescriptor()</h3><blockquote>
+<p>返回指定对象上一个自有属性对应的属性描述符。（自有属性指的是直接赋予该对象的属性，不需要从原型链上进行查找的属性）</p>
+</blockquote>
+<h3 id="Object-getOwnPropertyDescriptors"><a href="#Object-getOwnPropertyDescriptors" class="headerlink" title="Object.getOwnPropertyDescriptors()"></a>Object.getOwnPropertyDescriptors()</h3><blockquote>
+<p>获取一个对象的所有自身属性的描述符。</p>
+</blockquote>
+<h3 id="Object-getOwnPropertyNames"><a href="#Object-getOwnPropertyNames" class="headerlink" title="Object.getOwnPropertyNames()"></a>Object.getOwnPropertyNames()</h3><blockquote>
+<p>返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括Symbol值作为名称的属性）组成的数组。</p>
+</blockquote>
+<h3 id="Object-getOwnPropertySymbols"><a href="#Object-getOwnPropertySymbols" class="headerlink" title="Object.getOwnPropertySymbols()"></a>Object.getOwnPropertySymbols()</h3><blockquote>
+<p>返回一个给定对象自身的所有 Symbol 属性的数组。</p>
+</blockquote>
+<h3 id="Object-getPrototypeOf"><a href="#Object-getPrototypeOf" class="headerlink" title="Object.getPrototypeOf()"></a>Object.getPrototypeOf()</h3><blockquote>
+<p>返回指定对象的原型（内部[[Prototype]]属性的值。</p>
+</blockquote>
+<h3 id="Object-is"><a href="#Object-is" class="headerlink" title="Object.is()"></a>Object.is()</h3><blockquote>
+<p>判断两个值是否是相同的值。</p>
+</blockquote>
+<h3 id="Object-isExtensible"><a href="#Object-isExtensible" class="headerlink" title="Object.isExtensible()"></a>Object.isExtensible()</h3><blockquote>
+<p>判断一个对象是否是可扩展的（是否可以在它上面添加新的属性）。</p>
+</blockquote>
+<h3 id="Object-isFrozen"><a href="#Object-isFrozen" class="headerlink" title="Object.isFrozen()"></a>Object.isFrozen()</h3><blockquote>
+<p>判断一个对象是否被冻结。</p>
+</blockquote>
+<h3 id="Object-isSealed"><a href="#Object-isSealed" class="headerlink" title="Object.isSealed()"></a>Object.isSealed()</h3><blockquote>
+<p>判断一个对象是否被密封。</p>
+</blockquote>
+<h3 id="Object-keys"><a href="#Object-keys" class="headerlink" title="Object.keys()"></a>Object.keys()</h3><blockquote>
+<p>会返回一个由一个给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和使用 for…in 循环遍历该对象时返回的顺序一致 。</p>
+</blockquote>
+<h6 id="Object-observe"><a href="#Object-observe" class="headerlink" title="Object.observe()"></a><em>Object.observe()</em></h6><blockquote>
+<p><em>用于异步地监视一个对象的修改。当对象属性被修改时，方法的回调函数会提供一个有序的修改流。然而，这个接口已经被废弃并从各浏览器中移除。你可以使用更通用的 Proxy 对象替代。</em></p>
+</blockquote>
+<h3 id="Object-preventExtensions"><a href="#Object-preventExtensions" class="headerlink" title="Object.preventExtensions()"></a>Object.preventExtensions()</h3><blockquote>
+<p>让一个对象变的不可扩展，也就是永远不能再添加新的属性。</p>
+</blockquote>
+<h3 id="Object-seal"><a href="#Object-seal" class="headerlink" title="Object.seal()"></a>Object.seal()</h3><blockquote>
+<p>封闭一个对象，阻止添加新属性并将所有现有属性标记为不可配置。当前属性的值只要可写就可以改变。</p>
+</blockquote>
+<h3 id="Object-setPrototypeOf"><a href="#Object-setPrototypeOf" class="headerlink" title="Object.setPrototypeOf()"></a>Object.setPrototypeOf()</h3><blockquote>
+<p>设置一个指定的对象的原型 ( 即, 内部[[Prototype]]属性）到另一个对象或  null。</p>
+<p><em>由于现代 JavaScript 引擎优化属性访问所带来的特性的关系，更改对象的 [[Prototype]]在各个浏览器和 JavaScript 引擎上都是一个很慢的操作。</em></p>
+</blockquote>
+<h6 id="Object-unobserve"><a href="#Object-unobserve" class="headerlink" title="Object.unobserve()"></a><em>Object.unobserve()</em></h6><blockquote>
+<p>非标准。</p>
+<p><em>用来移除通过 Object.observe()设置的观察者的方法。</em></p>
+</blockquote>
+<h3 id="Object-values"><a href="#Object-values" class="headerlink" title="Object.values()"></a>Object.values()</h3><blockquote>
+<p>返回一个给定对象自身的所有可枚举属性值的数组，值的顺序与使用for…in循环的顺序相同 ( 区别在于 for-in 循环枚举原型链中的属性 )。</p>
+</blockquote>
+<h2 id="Object-prototype的方法"><a href="#Object-prototype的方法" class="headerlink" title="Object.prototype的方法"></a>Object.prototype的方法</h2><h3 id="Object-prototype-hasOwnProperty"><a href="#Object-prototype-hasOwnProperty" class="headerlink" title="Object.prototype.hasOwnProperty()"></a>Object.prototype.hasOwnProperty()</h3><blockquote>
+<p>返回一个布尔值，指示对象自身属性中是否具有指定的属性</p>
+</blockquote>
+<h3 id="Object-prototype-isPrototypeOf"><a href="#Object-prototype-isPrototypeOf" class="headerlink" title="Object.prototype.isPrototypeOf()"></a>Object.prototype.isPrototypeOf()</h3><blockquote>
+<p>用于测试一个对象是否存在于另一个对象的原型链上。</p>
+</blockquote>
+<h3 id="Object-prototype-propertyIsEnumerable"><a href="#Object-prototype-propertyIsEnumerable" class="headerlink" title="Object.prototype.propertyIsEnumerable()"></a>Object.prototype.propertyIsEnumerable()</h3><blockquote>
+<p>返回一个布尔值，表示指定的属性是否可枚举。</p>
+</blockquote>
+<h3 id="Object-prototype-toLocaleString"><a href="#Object-prototype-toLocaleString" class="headerlink" title="Object.prototype.toLocaleString()"></a>Object.prototype.toLocaleString()</h3><blockquote>
+<p>返回一个该对象的字符串表示。此方法被用于派生对象为了特定语言环境的目的（locale-specific purposes）而重载使用。</p>
+</blockquote>
+<h3 id="Object-prototype-toString"><a href="#Object-prototype-toString" class="headerlink" title="Object.prototype.toString()"></a>Object.prototype.toString()</h3><blockquote>
+<p>返回一个表示该对象的字符串。</p>
+</blockquote>
+<h3 id="Object-prototype-valueOf"><a href="#Object-prototype-valueOf" class="headerlink" title="Object.prototype.valueOf()"></a>Object.prototype.valueOf()</h3><blockquote>
+<p>返回指定对象的原始值。你很少需要自己调用valueOf方法；当遇到要预期的原始值的对象时，JavaScript会自动调用它。</p>
+</blockquote>
+<h6 id="非标准-已废弃-避免使用的方法"><a href="#非标准-已废弃-避免使用的方法" class="headerlink" title="非标准&#x2F;已废弃&#x2F;避免使用的方法"></a>非标准&#x2F;已废弃&#x2F;避免使用的方法</h6><blockquote>
+<p><em>Object.prototype.__defineGetter__ 方法可以将一个函数绑定在当前对象的指定属性上，当那个属性的值被读取时，你所绑定的函数就会被调用。</em></p>
+<p><em>Object.prototype.__defineSetter__ 方法可以将一个函数绑定在当前对象的指定属性上，当那个属性被赋值时，你所绑定的函数就会被调用。</em></p>
+<p><em>Object.prototype.__lookupGetter__ 方法会返回当前对象上指定属性的属性读取访问器函数（getter）。</em></p>
+<p><em>Object.prototype.__lookupSetter__ 方法是用来返回一个对象的某个属性上绑定了 setter （设置器）的钩子函数的引用。</em></p>
+<p><em>Object.prototype.eval() 方法用于在对象的上下文中对 JavaScript 代码字符串求值。</em></p>
+<p><em>Object.prototype.toSource()方法返回一个表示对象源代码的字符串。</em></p>
+<p><em>Object.prototype.unwatch() 删除一个 watch() 设置的 watchpoint.</em></p>
+<p><em>Object.prototype.watch() 方法会监视属性是否被赋值并在赋值时运行相关函数。</em></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://macshion.github.io/reacquaint-javascript-object/" data-id="cm1kx87ep005h6g4caas0dbw5" data-title="重新认识Javascript对象" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Object/" rel="tag">Object</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/jQuery-prototype-design/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          jQuery源码分析：无new构造实例及共享原型对象设计
+        
+      </div>
+    </a>
+  
+  
+    <a href="/less-and-atomic-style/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Less递归批量生成原子样式（Atomic style）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/English/">English</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E6%96%87/">中文</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axios/" rel="tag">Axios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BeautifulSoup/" rel="tag">BeautifulSoup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/" rel="tag">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dot/" rel="tag">Dot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Fetch/" rel="tag">Fetch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gatsby/" rel="tag">Gatsby</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graphviz/" rel="tag">Graphviz</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Less/" rel="tag">Less</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nextjs/" rel="tag">Nextjs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object/" rel="tag">Object</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redux/" rel="tag">Redux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Roadmap/" rel="tag">Roadmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SEO/" rel="tag">SEO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSR/" rel="tag">SSR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVG/" rel="tag">SVG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Styled-Components/" rel="tag">Styled-Components</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/" rel="tag">Tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Typescript/" rel="tag">Typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Umi/" rel="tag">Umi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VUE/" rel="tag">VUE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/" rel="tag">Webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/" rel="tag">前端面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/" rel="tag">微前端</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Axios/" style="font-size: 10px;">Axios</a> <a href="/tags/BeautifulSoup/" style="font-size: 10px;">BeautifulSoup</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Dot/" style="font-size: 10px;">Dot</a> <a href="/tags/Fetch/" style="font-size: 10px;">Fetch</a> <a href="/tags/Gatsby/" style="font-size: 12.5px;">Gatsby</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/Github/" style="font-size: 12.5px;">Github</a> <a href="/tags/Graphviz/" style="font-size: 10px;">Graphviz</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Javascript/" style="font-size: 17.5px;">Javascript</a> <a href="/tags/Less/" style="font-size: 10px;">Less</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/NLP/" style="font-size: 12.5px;">NLP</a> <a href="/tags/Nextjs/" style="font-size: 15px;">Nextjs</a> <a href="/tags/Object/" style="font-size: 12.5px;">Object</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/Redux/" style="font-size: 10px;">Redux</a> <a href="/tags/Roadmap/" style="font-size: 10px;">Roadmap</a> <a href="/tags/SEO/" style="font-size: 10px;">SEO</a> <a href="/tags/SSR/" style="font-size: 10px;">SSR</a> <a href="/tags/SVG/" style="font-size: 10px;">SVG</a> <a href="/tags/Styled-Components/" style="font-size: 10px;">Styled-Components</a> <a href="/tags/Tools/" style="font-size: 15px;">Tools</a> <a href="/tags/Typescript/" style="font-size: 10px;">Typescript</a> <a href="/tags/Umi/" style="font-size: 10px;">Umi</a> <a href="/tags/VUE/" style="font-size: 10px;">VUE</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">前端面试</a> <a href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">微前端</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Youtube-ltc%E4%B8%8B%E8%BD%BD%E6%B2%B9%E7%AE%A1%E5%92%8CB%E7%AB%99%E8%A7%86%E9%A2%91/">Youtube-ltc下载油管和B站视频</a>
+          </li>
+        
+          <li>
+            <a href="/Typescript-type-and-interface/">Typescript手册指南阅读笔记 - 类型与接口</a>
+          </li>
+        
+          <li>
+            <a href="/LearnhowGatsbyworks/">Tutorial: Learn how Gatsby works</a>
+          </li>
+        
+          <li>
+            <a href="/JavaScriptFetchAPI/">How To Use the JavaScript Fetch API to Get Data</a>
+          </li>
+        
+          <li>
+            <a href="/HowToUseAxioswithReact/">How To Use Axios with React</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 Macshion<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

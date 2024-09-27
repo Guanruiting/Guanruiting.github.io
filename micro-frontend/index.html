@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>微前端探索 | Macshion&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="转自张泰峰的博客《微前端大赏》 一、https:&#x2F;&#x2F;www.cnblogs.com&#x2F;ztfjs&#x2F;p&#x2F;single-spa.html 二、https:&#x2F;&#x2F;www.cnblogs.com&#x2F;ztfjs&#x2F;p&#x2F;single-spa2.html 三、https:&#x2F;&#x2F;www.cnblogs.com&#x2F;ztfjs&#x2F;p&#x2F;qiankun.html 微前端大赏什么是“微”什么是微前端？微前端解决了什么问题？要回答这两个问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微前端探索">
+<meta property="og:url" content="https://macshion.github.io/micro-frontend/index.html">
+<meta property="og:site_name" content="Macshion&#39;s blog">
+<meta property="og:description" content="转自张泰峰的博客《微前端大赏》 一、https:&#x2F;&#x2F;www.cnblogs.com&#x2F;ztfjs&#x2F;p&#x2F;single-spa.html 二、https:&#x2F;&#x2F;www.cnblogs.com&#x2F;ztfjs&#x2F;p&#x2F;single-spa2.html 三、https:&#x2F;&#x2F;www.cnblogs.com&#x2F;ztfjs&#x2F;p&#x2F;qiankun.html 微前端大赏什么是“微”什么是微前端？微前端解决了什么问题？要回答这两个问">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/893115-20201018210033817-48394595.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/2029960-61faa258ec37bf2f.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225105459886.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/o_2011301725479072df3196964d51abc0e7f250332962.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225105932045.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/o_201130181531fc277894-9970-4acc-9170-0aef2e457fd5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/o_2011301817110891255a-2940-44f5-a1b1-6bec5423c06d.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/o_20113018181813834fbd-2943-4980-aa4c-a0038b242b66.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225112744682.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113127374.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113208656.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113250407.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113335581.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113406029.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113433309.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113504237.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113612030.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113650792.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113731843.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113803662.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113839377.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113942064.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225114020401.png">
+<meta property="article:published_time" content="2021-02-25T01:44:54.000Z">
+<meta property="article:modified_time" content="2024-09-27T15:58:38.008Z">
+<meta property="article:author" content="Macshion">
+<meta property="article:tag" content="微前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/images/893115-20201018210033817-48394595.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Macshion's blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Macshion&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">每天进步一点点</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://macshion.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-micro-frontend" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/micro-frontend/" class="article-date">
+  <time class="dt-published" datetime="2021-02-25T01:44:54.000Z" itemprop="datePublished">2021-02-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%B8%AD%E6%96%87/">中文</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      微前端探索
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>转自张泰峰的博客《微前端大赏》</p>
+<p>一、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ztfjs/p/single-spa.html">https://www.cnblogs.com/ztfjs/p/single-spa.html</a></p>
+<p>二、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ztfjs/p/single-spa2.html">https://www.cnblogs.com/ztfjs/p/single-spa2.html</a></p>
+<p>三、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ztfjs/p/qiankun.html">https://www.cnblogs.com/ztfjs/p/qiankun.html</a></p>
+<h2 id="微前端大赏"><a href="#微前端大赏" class="headerlink" title="微前端大赏"></a>微前端大赏</h2><h3 id="什么是“微”"><a href="#什么是“微”" class="headerlink" title="什么是“微”"></a>什么是“微”</h3><p>什么是微前端？微前端解决了什么问题？要回答这两个问题，我们首先要解决的是：什么是“微”。大家可能已经听说过微服务的概念， 微服务是后端服务的一种架构模式，它想解决的问题是可用性问题、扩展性问题、耦合度问题，进而演变出“服务治理”，”服务发现”等技术。例如：</p>
+<ul>
+<li>通过熔断、限流等机制保证高可用</li>
+<li>微服务之间调用的负载均衡</li>
+<li>分布式事务（2PC、3PC、TCC、LCN等）</li>
+<li>服务调用链跟踪</li>
+<li>配置中心</li>
+<li>服务自动发现</li>
+</ul>
+<p>“微”的基础能力：</p>
+<p> <strong>单一职责</strong></p>
+<p> 一个微服务应该都是单一职责的，这才是“微”的体现，<strong>一个微服务解决一个业务问题（注意是一个业务问题而不是一个接口）。</strong></p>
+<p><strong>面向服务</strong></p>
+<p>将自己的业务能力封装并对外提供服务，这是继承SOA的核心思想，一个微服务本身也可能使用到其它微服务的能力</p>
+<p>这两个基础的能力构成了微服务整个的架构体系，是围绕服务、围绕一个个单一的职责体系的，它将一个、多个不同业务体系内的服务连接起来合并成一个大的业务模块，再分而治之，对每个服务做相应的技术、业务处理，合并成了一整个面向服务的业务。当服务发生故障，熔断机制产生作用，兜底服务马上启用，然后调用告警服务，将信息通知给通知服务，接着通知服务负责提醒对应的人员查看并解决问题。<br>这一系列的操作就是微服务的“微”字所要解决的问题，它把传统的大型项目拆分成各个不同的业务模块，再由各种一致性组件、可用性组件把它们组合起来使用。</p>
+<p>“微”是分治的意思，那微前端是什么呢？</p>
+<h3 id="前端的历史"><a href="#前端的历史" class="headerlink" title="前端的历史"></a>前端的历史</h3><h4 id="后端jsp时代"><a href="#后端jsp时代" class="headerlink" title="后端jsp时代"></a>后端jsp时代</h4><p>JSP时代没有太多的悬念，我依稀还记得那个年代，当我clone下后端爸爸的代码，笨拙的在windows电脑上按照csdn的步骤安装java的jdk，打开百度搜索“JRE和JDK的区别是什么，我有没有装错”…一言难尽。总之那个年代，我们前端的代码大多数必须经过后端同学在jsp里面的标签处理才可以在线上使用这个时候拆分、分治的工作都集中在js，会分为很多套不同的js代码，在script中依次引入操作的。<br>这个阶段前端其实并不“微”，只是作为一个界面脚本标记存在的而已。</p>
+<h4 id="iframe时代"><a href="#iframe时代" class="headerlink" title="iframe时代"></a>iframe时代</h4><p>渐渐的ajax、jQuery、require.js的出现打破了前端生态的模式，ajax使前后端分离，jQuery使前端变得更加容易编写，而AMD的模块规范以及require.js的出现让前端从此变得不一样了，前端进入了模块化的时代。</p>
+<p>require.js是遵循AMD协议的一个前端模块化库。</p>
+<p>最早的时候，所有Javascript代码都写在一个文件里面，只要加载这一个文件就够了。后来，代码越来越多，一个文件不够了，必须分成多个文件，依次加载。下面的网页代码，相信很多人都见过。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;1.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;2.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;3.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>requireJS的写法：</p>
+<p>模块代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">require</span>([<span class="string">&#x27;moduleA&#x27;</span>, <span class="string">&#x27;moduleB&#x27;</span>, <span class="string">&#x27;moduleC&#x27;</span>,<span class="keyword">function</span> (<span class="params">moduleA, moduleB, moduleC</span>)&#123;</span><br><span class="line"></span><br><span class="line">　<span class="comment">// some code here</span></span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>requireJS可以通过我们现在熟悉的request()，类似的写法去引入一个模块，在这个时候，它的理念跟iframe相结合，就有了第一个“微前端”的架构模式，当然这个时候的微前端并不很“微”。</p>
+<p>通过一张阿里云的控制台的图来解释这套架构的模式：</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/893115-20201018210033817-48394595.jpg" alt="avatar"></p>
+<p>主应用负责框架、通信、路由、资源分配。<br>子应用负责实现业务。<br>两者之间通过一套特定的sdk进行交互。</p>
+<p>已经非常接近微服务的整体概念了。 通过主框架解决共性问题，拆分各个不同的微模块、微应用解决各个单一职责的问题，这个时候每个应用是<strong>面向应用</strong>的,即应用本身只对应用本身负责，它有很多特性：</p>
+<p>1、技术栈无关，遵循同一套通信机制即可<br>2、应用解偶，团队之间通过主框架基座进行交互<br>3、热更新插拔，不需要全部更新主框架，只需要更新对应的应用即可<br>4、可动态降级熔断</p>
+<p>……</p>
+<p>可以说这一时期的前端已经进入了微前端时代。当然不是所有的应用都适用于这一个庞大的开发模式，毕竟阿里云几十上百个不同的应用模块是需要庞大的业务支撑的。</p>
+<h4 id="打包技术与SSR-服务端渲染"><a href="#打包技术与SSR-服务端渲染" class="headerlink" title="打包技术与SSR(服务端渲染)"></a>打包技术与SSR(服务端渲染)</h4><p>然后gulp、webpack出现了，angular、vue、react单页应用也出现了。</p>
+<p>但问题来了，我们知道一个单页应用里资源是很重的。首页的加载速度需要很大的代价去优化它。这个时候iframe会带来比较严重的体验问题。</p>
+<p><strong>Single-spa出现了</strong></p>
+<p>Single-spa是一个用于前端微服务化的JavaScript前端解决方案。</p>
+<p>同样的技术栈无关，在同一个页面中使用多种技术框架(React, Vue, AngularJS, Angular, Ember等任意技术框架)，并且不需要刷新页面。<br>也同样无需重构现有代码，使用新的技术框架编写代码，现有项目中的代码无需重构。<br>更好的资源控制，每个独立模块的代码可做到按需加载，不浪费额外资源。<br>每个独立模块可独立运行。大致是这样的：<br><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/2029960-61faa258ec37bf2f.png" alt="avatar"></p>
+<p>让我们再去盗几张别人的图：（图片来自网络，侵权通删）</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225105459886.png" alt="image-20210225105459886"></p>
+<p><strong>Loader</strong></p>
+<p>Loader是核心模块的加载器，可以通过loader来进行子应用的加载，目前的微前端方案设计里面一般有两种模式。</p>
+<p>第一种是非侵入式(iframe模式)，通过加载对应子应用的 index.html 文件，再通过对首页html文件进行解析，获取到子应用的js文件和css文件，进行加载。</p>
+<p>另一种是子应用打包成一个js文件，按照规范的导出格式,主应用只加载 index.js 文件。获取到对应的render和destroy方法。</p>
+<p><strong>External</strong></p>
+<p>在SPA微前端中有一个需要解决的问题就是，子应用间的公共依赖，我们如何抽离项目间的公共依赖呢，由于我们将一个应用拆分成了多个子应用，那子应用之间的依赖如何复用。如果了解commonJS的同学应该知道，commonJS具备加载模块缓存能力，加载过的模块会将其缓存起来，那么是不是我们可以将子模块以commonJS的规范进行打包。在加载子模块时，提供全局的exports和require方法，将子应用导出的exports进行收集,在require时加载我们配置的external资源。</p>
+<h3 id="核心问题"><a href="#核心问题" class="headerlink" title="核心问题"></a>核心问题</h3><h4 id="通信"><a href="#通信" class="headerlink" title="* 通信 *"></a>* 通信 *</h4><p><strong>消息总线</strong>，简单理解就是一个消息收发中心，众多应用可以连接到总线上，应用可以往消息中心发送或接收信息（通过订阅监听或主动推拉）。比如：应用A发送一条消息到总线上，总线判断应该送给应用B,应用B可以接收到信息（应用B订阅或拉取到了应用A的消息），这样的话，消息总线就充当一个中间者的角色，使得应用A和应用B解偶了，很方便。</p>
+<p>在前端可使用的技术大致有：</p>
+<p>1、通过window交互，需要注意的是domain域名的设置，比较复杂，维护成本高，不可控性高。</p>
+<p>2、通过socket，主应用和子应用连接socket，通过服务端实现通信，一般没有人这么用，比较复杂, 成本高。</p>
+<p>3、通过url进行简单的交互，大多应用采用的是由路由参数进行交互的，实现简单且体验较好。</p>
+<p>4、localstorage等存储媒介。</p>
+<h4 id="鉴权问题"><a href="#鉴权问题" class="headerlink" title="鉴权问题"></a>鉴权问题</h4><p>微前端怎样在各个模块之间统一权限体系？这个问题前端解决的难度不低，玩的不好容易崩溃。<br>一般情况下由后台爸爸，通过cookie识别，从后台接口带出对应的权限数据在前端进行二次判断。</p>
+<h4 id="污染问题"><a href="#污染问题" class="headerlink" title="污染问题"></a>污染问题</h4><p>1、全局环境污染<br>2、事件污染<br>3、style污染<br>4、定时器污染<br>5、localstorage污染</p>
+<p>解决全局环境污染和style污染，通常采用<strong>快照模式</strong>和<strong>代理劫持</strong>，在新的api中还可以采用<strong>shadowbox</strong>。</p>
+<h4 id="Sandbox"><a href="#Sandbox" class="headerlink" title="Sandbox"></a>Sandbox</h4><p>有一个核心的模块是沙盒，由于多个子应用会反复的展示在同一个容器内，子应用中会造成对当前环境的副作用，例如：全局样式、全局变量、监听事件、定时器等。沙盒在这里主要是为运行中的程序提供隔离环境，避免应用之间相互影响。在应用的运行环境中做资源隔离，监听应用的生命周期进行清理、加载操作。</p>
+<h3 id="小结：什么是微前端"><a href="#小结：什么是微前端" class="headerlink" title="小结：什么是微前端"></a>小结：什么是微前端</h3><p>微前端（Micro-Frontends）是一种类似于微服务的架构，它将微服务的理念应用于浏览器端，即：</p>
+<p><strong>将 Web 应用由单一的单体应用转变为多个小型前端应用聚合为一的应用。各个前端应用还可以独立运行、独立开发、独立部署。微前端不是单纯的前端框架或者工具，而是一套架构体系</strong>。</p>
+<p>这个概念最早在2016年底被提出，可以参考在Google上搜索Micro-Frontends, 排名靠前的<a target="_blank" rel="noopener" href="https://micro-frontends.org的博客文章,提出了早期的微前端模型./">https://micro-frontends.org的博客文章，提出了早期的微前端模型。</a></p>
+<p><strong>微前端能做什么？</strong></p>
+<p>1、拆分和细化<br>2、整合历史系统<br>3、独立构建发布<br>4、治理、熔断、降级<br>……</p>
+<h3 id="相关资源"><a href="#相关资源" class="headerlink" title="相关资源"></a>相关资源</h3><p>前端微服务化解决方案2 - Single-SPA：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c0f4b837dbea">https://www.jianshu.com/p/c0f4b837dbea</a><br>前端必看的微前端：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/162726399">https://zhuanlan.zhihu.com/p/162726399</a><br>微前端-最容易看懂的微前端知识：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/141530392">https://zhuanlan.zhihu.com/p/141530392</a></p>
+<p>下期我们可以具体实践实践，自己动手搭建一个基于single-spa的微前端框架，敬请期待。</p>
+<h2 id="微前端大赏二：single-spa实践"><a href="#微前端大赏二：single-spa实践" class="headerlink" title="微前端大赏二：single-spa实践"></a>微前端大赏二：single-spa实践</h2><h4 id="single-spa"><a href="#single-spa" class="headerlink" title="single-spa"></a>single-spa</h4><p>single-spa是一个javascript库，它可以让很多小页面、小组件、不同架构的前端组件在一个页面应用程序中共存。</p>
+<p>这里有一个演示: (<a target="_blank" rel="noopener" href="https://single-spa.surge.sh/">https://single-spa.surge.sh</a>)</p>
+<p>这个库可以让你的应用使用多个不同的技术栈（vue、react、angular等等）,这样我们就可以做同步开发，最后再使用一个公用的路由即可实现路由完美切换。也可以使用一样的技术栈，分不同的团队进行开发，只需要最后使用这个库把它们整合在一起，设置不用的路由名称就可以了。</p>
+<p><strong>优点:</strong></p>
+<ul>
+<li><p>敏捷</p>
+<p>  独立开发和更快的部署周期： 开发团队可以选择自己的技术并及时更新技术栈。 一旦完成其中一项就可以部署，而不必等待所有事情完毕。</p>
+</li>
+<li><p>风险下降</p>
+<p>  降低错误和回归问题的风险，相互之间的依赖性急剧下降。</p>
+</li>
+<li><p>更小单元</p>
+<p>  更简单快捷的测试，每一个小的变化不必再触碰整个应用程序。</p>
+</li>
+<li><p>持续交付</p>
+<p>  更快交付客户价值，有助于持续集成、持续部署以及持续交付。</p>
+</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li><p>配置复杂</p>
+<p>  single-spa相对来说配置复杂，当然我们还有更简单一点的qiankun，也可以基于single-spa封装一套更适合自己的框架。</p>
+</li>
+<li><p>一定的资源浪费</p>
+<p>  由于核心逻辑还是在于请求manifest，拿到js文件后执行渲染，这个过程不可避免会产生一些冗余，对于C端的应用来说，这个问题比较致命，当然，对于B端来说，这个是可以接受的，在可控制的范围之内</p>
+</li>
+</ul>
+<h4 id="single-spa核心逻辑"><a href="#single-spa核心逻辑" class="headerlink" title="single-spa核心逻辑"></a>single-spa核心逻辑</h4><p>几张图可以解决single-spa的核心逻辑</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/o_2011301725479072df3196964d51abc0e7f250332962.jpg" alt="avatar"></p>
+<p>第一张图，很显然，第一步，在我们的webpack应用里生成一个manifest.json文件，这个文件内容差不多如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;files&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;static/js/0.chunk.js&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/static/js/0.chunk.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;static/js/0.chunk.js.map&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/static/js/0.chunk.js.map&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;static/js/1.chunk.js&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/static/js/1.chunk.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;static/js/1.chunk.js.map&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/static/js/1.chunk.js.map&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;main.js&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/static/js/main.chunk.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;main.js.map&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/static/js/main.chunk.js.map&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;runtime-main.js&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/static/js/bundle.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;runtime-main.js.map&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/static/js/bundle.js.map&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;index.html&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/index.html&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;static/media/logo.svg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/static/media/logo.103b5fa1.svg&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;entrypoints&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;static/js/bundle.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;static/js/0.chunk.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;static/js/main.chunk.js&quot;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>关键点在 entrypoints 这个属性，我们可以通过manifest拿到项目的依赖表并可以使用script标签动态加载出来，这个时候我们就可以实现动态加载不同的微前端应用了。</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225105932045.png" alt="image-20210225105932045"></p>
+<p>第二张图，我画出了更加具体的，single-spa在渲染过程中的核心逻辑：</p>
+<p>1、 首先我们有 main（主app）和 child（子app），主app只有一个，子app可以有多个</p>
+<p>2、 其次，主app上一般我们可以在index.html里面，写多几个空间，也就是多几个div</p>
+<p>例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">”react-app”</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">”vue-app”</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>3、然后，在我们的child上，要用webpack插件，生成一个带有所有需要加载的依赖文件的manifest.json </p>
+<p>4、主应用去加载manifest.json，获取到具体的js，使用script标签把它放到主应用上，进行渲染</p>
+<p>至此，我们就可以完全搞清楚，为什么single-spa这么神奇了，接下来让我们搭建一个简易版的single-spa。</p>
+<h3 id="搭建single-spa"><a href="#搭建single-spa" class="headerlink" title="搭建single-spa"></a>搭建single-spa</h3><h4 id="vue-main"><a href="#vue-main" class="headerlink" title="vue main"></a>vue main</h4><p>由于我们需要使用webpack配置，而最新版本的vue-cli默认只有babel，我们用这个步骤来安装一个vue版本的主应用</p>
+<p>1、装包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @vue/cli @vue/cli-init  -g</span><br></pre></td></tr></table></figure>
+
+<p>2、创建一个项目</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack demo-single</span><br></pre></td></tr></table></figure>
+
+<p>3、进入目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd demo-single</span><br></pre></td></tr></table></figure>
+
+<p>4、装包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i single-spa single-spa-vue axios --save</span><br></pre></td></tr></table></figure>
+
+<p>5、在src目录创建一个single-spa配置文件 single-spa-config.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// single-spa-config.js</span></span><br><span class="line">    <span class="keyword">import</span> * <span class="keyword">as</span> singleSpa <span class="keyword">from</span> <span class="string">&#x27;single-spa&#x27;</span>; <span class="comment">//导入single-spa</span></span><br><span class="line">    <span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        runScript：</span></span><br><span class="line"><span class="comment">        一个promise同步方法。可以代替创建一个script标签，然后加载服务</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">runScript</span> = <span class="keyword">async</span> (<span class="params">url</span>) =&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> script = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>);</span><br><span class="line">            script.<span class="property">src</span> = url;</span><br><span class="line">            script.<span class="property">onload</span> = resolve;</span><br><span class="line">            script.<span class="property">onerror</span> = reject;</span><br><span class="line">            <span class="keyword">const</span> firstScript = <span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="string">&#x27;script&#x27;</span>)[<span class="number">0</span>];</span><br><span class="line">            firstScript.<span class="property">parentNode</span>.<span class="title function_">insertBefore</span>(script, firstScript);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">getManifest</span> = (<span class="params">url, bundle</span>) =&gt; <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="title function_">async</span> (resolve) =&gt; &#123;</span><br><span class="line">        <span class="keyword">const</span> &#123; data &#125; = <span class="keyword">await</span> axios.<span class="title function_">get</span>(url);</span><br><span class="line">        <span class="comment">// eslint-disable-next-line no-console</span></span><br><span class="line">        <span class="keyword">const</span> &#123; entrypoints &#125; = data;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; entrypoints.<span class="property">length</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">await</span> <span class="title function_">runScript</span>(<span class="string">&#x27;http://127.0.0.1:3000/&#x27;</span> + entrypoints[i]).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (i === entrypoints.<span class="property">length</span> - <span class="number">1</span>) &#123;</span><br><span class="line">                    <span class="title function_">resolve</span>()</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    singleSpa.<span class="title function_">registerApplication</span>( <span class="comment">//注册微前端服务</span></span><br><span class="line">        <span class="string">&#x27;singleDemoVue&#x27;</span>, <span class="title function_">async</span> () =&gt; &#123;</span><br><span class="line">            <span class="keyword">let</span> singleVue = <span class="literal">null</span>;</span><br><span class="line">            <span class="keyword">await</span> <span class="title function_">getManifest</span>(<span class="string">&#x27;http://127.0.0.1:3000/asset-manifest.json&#x27;</span>).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                singleVue = <span class="variable language_">window</span>.<span class="property">singleReact</span>;</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">return</span> singleVue;    </span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="function"><span class="params">location</span> =&gt;</span> location.<span class="property">pathname</span>.<span class="title function_">startsWith</span>(<span class="string">&#x27;/react&#x27;</span>) <span class="comment">// 配置前缀</span></span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    singleSpa.<span class="title function_">start</span>(); <span class="comment">// 启动</span></span><br></pre></td></tr></table></figure>
+<p><strong>注： 可以看到，runScript就是个创建script标签的方法，getManifest是一个简单的获取manifest并创建script的方法</strong>。</p>
+<p>6、在main.js里引入这个文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#x27;./single-spa-config&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>7、运行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<p>最终得到这样一个工程</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/o_201130181531fc277894-9970-4acc-9170-0aef2e457fd5.png" alt="avatar"></p>
+<p>这样我们就完成了一个入口的配置，当然它还很简单，更复杂的操作我们应该放在具体的工程上去做。</p>
+<h4 id="react-child"><a href="#react-child" class="headerlink" title="react child"></a>react child</h4><p>上面的代码可以看到，我们register了一个vue主应用并且访问了它的manifest文件，现在我们需要创建一个react子应用，也是直接通过几个步骤来完成，我们使用create-react-app来快速搭建：</p>
+<p>1、装包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install create-react-app -g</span><br></pre></td></tr></table></figure>
+
+<p>2、创建</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx create-react-app my-app</span><br></pre></td></tr></table></figure>
+
+<p>3、创建完成后，注意我们需要对webpack做一点修改，默认create-react-app会有一个git本地分支，让我们先提交到本地仓库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">git add .</span><br><span class="line">git commit -m ttt</span><br></pre></td></tr></table></figure>
+
+<p>4、拿到webpack配置文件，create-react-app默认隐藏了webpack配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn eject 或 npm run eject</span><br></pre></td></tr></table></figure>
+
+<p>5、修改webpack文件<br>修改 &#x2F;config&#x2F;webpack.config.js 在output增加：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">    ...这里忽略了原有的</span><br><span class="line">    library: &#x27;singleReact&#x27;,</span><br><span class="line">    libraryTarget: &#x27;window&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/o_2011301817110891255a-2940-44f5-a1b1-6bec5423c06d.png" alt="avatar"></p>
+<p>修改 &#x2F;scripts&#x2F;start.js文件，在 <code>const devServer = new ...</code> 这个地方，增加一个header的设置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> devServer = <span class="keyword">new</span> <span class="title class_">WebpackDevServer</span>(compiler, &#123;</span><br><span class="line">      ...serverConfig,</span><br><span class="line">      <span class="comment">// 这里上增加的header设置</span></span><br><span class="line">      <span class="attr">headers</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>: <span class="string">&#x27;*&#x27;</span>,</span><br><span class="line">      &#125;</span><br><span class="line">  </span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/o_20113018181813834fbd-2943-4980-aa4c-a0038b242b66.png" alt="avatar"></p>
+<p>6、修改src&#x2F;index.js，要把root改为动态渲染，还要注册生命周期</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ReactDOM</span> <span class="keyword">from</span> <span class="string">&#x27;react-dom&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./index.css&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> reportWebVitals <span class="keyword">from</span> <span class="string">&#x27;./reportWebVitals&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> single-spaReact, &#123;single-spaContext&#125; <span class="keyword">from</span> <span class="string">&#x27;single-spa-react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">rootComponent</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="title class_">ReactDOM</span>.<span class="title function_">render</span>(</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">React.StrictMode</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">App</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">React.StrictMode</span>&gt;</span></span></span><br><span class="line">    ,</span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;react-root&#x27;</span>)</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ReactDOM.render(</span></span><br><span class="line"><span class="comment">//   ,</span></span><br><span class="line"><span class="comment">//   document.getElementById(&#x27;root&#x27;)</span></span><br><span class="line"><span class="comment">// );</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> reactLifecycles = single-<span class="title function_">spaReact</span>(&#123;</span><br><span class="line">  <span class="title class_">React</span>,</span><br><span class="line">  <span class="title class_">ReactDOM</span>,</span><br><span class="line">  rootComponent,</span><br><span class="line">  <span class="title function_">errorBoundary</span>(<span class="params">err, info, props</span>) &#123;</span><br><span class="line">    <span class="comment">// https://reactjs.org/docs/error-boundaries.html</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(err)</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>This renders when a catastrophic error occurs<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> bootstrap = reactLifecycles.<span class="property">bootstrap</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> mount = reactLifecycles.<span class="property">mount</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> unmount = reactLifecycles.<span class="property">unmount</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// If you want to start measuring performance in your app, pass a function</span></span><br><span class="line"><span class="comment">// to log results (for example: reportWebVitals(console.log))</span></span><br><span class="line"><span class="comment">// or send to an analytics endpoint。Learn more: https://bit.ly/CRA-vitals</span></span><br><span class="line"><span class="title function_">reportWebVitals</span>();</span><br></pre></td></tr></table></figure>
+
+<p>7、运行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run start</span><br></pre></td></tr></table></figure>
+
+<p>8、在main的vue那里，访问&#x2F;react 你会看到下面有一个react渲染和vue的一起出现，大功告成</p>
+<h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><p>生命周期函数共有4个：bootstrap、mount、unmount、update。生命周期可以传入，返回Promise的函数也可以传入返回Promise函数的数组。<br>引用一个大佬完整的说明, 非常的详细：<a target="_blank" rel="noopener" href="https://github.com/YataoZhang/my-single-spa/issues/4">https://github.com/YataoZhang/my-single-spa/issues/4</a></p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>single-spa可以给我们提供一整套方案，去搭建微前端集成框架，但它并不是一个开箱即用的封装，它有很多的坑等着我们去踩。<br>一般情况下，我们选择使用qiankun，它的封装程度更好，api更加友好一些。待积攒足够多的使用经验，可以考虑自研一套自己的微前端框架，增加整体的前端研发效率。下节我将给大家带来qiankun对single-spa的封装，在具体应用中的实践。待完结框架篇后，我们可以再深入探究single-spa的实现原理以及各种概念。</p>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p>single-spa 文档: <a target="_blank" rel="noopener" href="https://single-spa.js.org/docs/getting-started-overview/">https://single-spa.js.org/docs/getting-started-overview/</a></p>
+<p>微前端 single-spa: <a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903896884707342">https://juejin.cn/post/6844903896884707342</a></p>
+<p>这可能是你见过最完善的微前端解决方案！: <a target="_blank" rel="noopener" href="https://www.infoq.cn/article/o6GxRD9iHQOplKICiDDU">https://www.infoq.cn/article/o6GxRD9iHQOplKICiDDU</a></p>
+<p>single-spa微前端: <a target="_blank" rel="noopener" href="http://www.soulapp.tech/2019/09/25/single-spa%E5%BE%AE%E5%89%8D%E7%AB%AF/">http://www.soulapp.tech/2019/09/25/single-spa微前端/</a></p>
+<p>Single-Spa + Vue Cli 微前端落地指南 (项目隔离远程加载，自动引入) : <a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904025565954055">https://juejin.cn/post/6844904025565954055</a></p>
+<h2 id="微前端终篇：qiankun指南以及微前端整体探索"><a href="#微前端终篇：qiankun指南以及微前端整体探索" class="headerlink" title="微前端终篇：qiankun指南以及微前端整体探索"></a>微前端终篇：qiankun指南以及微前端整体探索</h2><h3 id="qiankun原理和API介绍"><a href="#qiankun原理和API介绍" class="headerlink" title="qiankun原理和API介绍"></a>qiankun原理和API介绍</h3><p>qiankun是基于single-spa框架的一个上层应用，它提供了完整的生命周期，和一些钩子函数，通过路由匹配来动态加载注册微应用，同时提供了一系列api对微应用做管理和预加载等，它相对single-spa来说进步是比较大的。</p>
+<p>所以—qiankun实质上是single-spa的一个封装，基于我们在上一节看到的，single-spa是通过输出一个manifest.json 通过标识入口信息动态构造script渲染实现的微前端应用，类似下面的图：</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225112744682.png" alt="image-20210225112744682"></p>
+<p>回顾一下single-spa在渲染过程中的核心逻辑<br>1、 首先我们有 main（主app） child（子app），主app只有一个，子app可以有多个<br>2、 其次，主app上一般我们可以在index.html里面，写多几个空间，也就是多几个div</p>
+<p>例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>\=<span class="string">”react-app”\</span>&gt;</span>&lt;/div\&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>\=<span class="string">”vue-app”\</span>&gt;</span>&lt;/div\&gt; </span><br></pre></td></tr></table></figure>
+
+<p>3、然后，在我们的child上，要用webpack插件，生成一个带有所有需要加载的依赖文件的manifest.json</p>
+<p>4、主应用去加载这个manifest.json，获取到具体的js，使用script标签把它放到主应用上，进行渲染</p>
+<p>在qiankun中对这套逻辑做了基本的封装, 让我们只需要经过简单的几个api就可以控制single-spa中比较复杂的配置和概念。</p>
+<h4 id="注册"><a href="#注册" class="headerlink" title="注册"></a><strong>注册</strong></h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; registerMicroApps, start &#125; <span class="keyword">from</span> <span class="string">&#x27;qiankun&#x27;</span>;</span><br><span class="line"><span class="title function_">registerMicroApps</span>([</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;react app&#x27;</span>, <span class="comment">// 应用名称</span></span><br><span class="line">    <span class="attr">entry</span>: <span class="string">&#x27;//localhost:7100&#x27;</span>, <span class="comment">// 应用入口，应用需要增加cors选项</span></span><br><span class="line">    <span class="attr">container</span>: <span class="string">&#x27;#yourContainer&#x27;</span>, <span class="comment">// 应用单独的appid的div</span></span><br><span class="line">    <span class="attr">activeRule</span>: <span class="string">&#x27;/yourActiveRule&#x27;</span>, <span class="comment">// 匹配路由</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;vue app&#x27;</span>,</span><br><span class="line">    <span class="attr">entry</span>: &#123; <span class="attr">scripts</span>: [<span class="string">&#x27;//localhost:7100/main.js&#x27;</span>] &#125;,</span><br><span class="line">    <span class="attr">container</span>: <span class="string">&#x27;#yourContainer2&#x27;</span>,</span><br><span class="line">    <span class="attr">activeRule</span>: <span class="string">&#x27;/yourActiveRule2&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">]);</span><br><span class="line"><span class="title function_">start</span>();</span><br></pre></td></tr></table></figure>
+
+<h4 id="main"><a href="#main" class="headerlink" title="main"></a>main</h4><p>main是一个qiankun的主体部分，它也是不限制框架种类的，可以用react也可以用vue和angular，只需要在entry.js里面注册它就可以了。</p>
+<p>一般情况下main的作用是存放公共代码，例如：<br>1、消息触发器<br>2、公共路由<br>3、权限触发器<br>4、存放例如全局管理、皮肤、用户管理等公共页面</p>
+<p>你也可以把站点的首页写在这里，可以加快主体加载速度</p>
+<h4 id="生命周期-1"><a href="#生命周期-1" class="headerlink" title="生命周期"></a>生命周期</h4><h5 id="bootstrap"><a href="#bootstrap" class="headerlink" title="bootstrap"></a>bootstrap</h5><p>boostrap相当于init，子应用在第一次加载的时候会调用这个方法， 一般可以在里面做一些项目的初始化操作。</p>
+<h5 id="mount"><a href="#mount" class="headerlink" title="mount"></a>mount</h5><p>每次在加载到子应用的时候都会调用它，就像是componentDidMount,一般情况下我们要把ReactDOM.render这样的初始化函数写在里面，每次mount时调用render。</p>
+<h5 id="unmount"><a href="#unmount" class="headerlink" title="unmount"></a>unmount</h5><p>这个跟mount正好相反，每一次注销&#x2F;切换子应用的时候会调用它，一般我们在这里 ReactDOM.unmountComponentAtNode 注销这个应用，然后把整个项目的容器让出来</p>
+<h4 id="update"><a href="#update" class="headerlink" title="update"></a>update</h4><p>这是个可选的生命周期，子应用发生变化的时候会调用。</p>
+<h4 id="路由匹配"><a href="#路由匹配" class="headerlink" title="路由匹配"></a>路由匹配</h4><p>路由规则有两种，需要手动调用对应的子应用渲染就行了，通过一个叫loadMicroApp的方法挂载一个子应用组件，这样就可以在main中像配置一个正常的应用那样配置子应用的view了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import &#123; loadMicroApp &#125; from &#x27;qiankun&#x27;;</span><br><span class="line">import React from &#x27;react&#x27;;</span><br><span class="line">class App extends React.Component &#123;</span><br><span class="line">  containerRef = React.createRef();</span><br><span class="line">  microApp = null;</span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    this.microApp = loadMicroApp(</span><br><span class="line">      &#123; name: &#x27;app1&#x27;, entry: &#x27;//localhost:1234&#x27;, container: this.containerRef.current, props: &#123; name: &#x27;qiankun&#x27; &#125; &#125;,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  componentWillUnmount() &#123;</span><br><span class="line">    this.microApp.unmount();</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidUpdate() &#123;</span><br><span class="line">    this.microApp.update(&#123; name: &#x27;kuitos&#x27; &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;div ref=&#123;this.containerRef&#125;&gt;&lt;/div&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="处理样式"><a href="#处理样式" class="headerlink" title="处理样式"></a>处理样式</h4><h5 id="沙箱"><a href="#沙箱" class="headerlink" title="沙箱"></a>沙箱</h5><p>qiankun的沙箱模式是在start的api配置项里面开启的。</p>
+<p>sandbox 选项可选</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">start</span>(&#123;</span><br><span class="line">  <span class="attr">sandbox</span>: <span class="literal">true</span> <span class="comment">// true | false | &#123; strictStyleIsolation?: boolean, experimentalStyleIsolation?: boolean &#125;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>默认情况下沙箱可以确保单实例场景子应用之间的样式隔离，但是无法确保主应用跟子应用、或者多实例场景的子应用样式隔离。当配置为 { strictStyleIsolation: true } 时表示开启严格的样式隔离模式。这种模式下 qiankun 会为每个微应用的容器包裹上一个 shadow dom 节点，从而确保微应用的样式不会对全局造成影响。<br>**shadow dom coco大神写过一篇文章介绍：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/coco1s/p/5711795.html">https://www.cnblogs.com/coco1s/p/5711795.html</a></p>
+<h5 id="样式冲突解决方案"><a href="#样式冲突解决方案" class="headerlink" title="样式冲突解决方案"></a>样式冲突解决方案</h5><p>qiankun 会自动隔离微应用之间的样式（开启沙箱的情况下），你可以通过手动的方式确保主应用与微应用之间的样式隔离。比如给主应用的所有样式添加一个前缀，或者假如你使用了 ant-design 这样的组件库，你可以通过这篇文档中的配置方式给主应用样式自动添加指定的前缀。</p>
+<p>以 antd 为例：</p>
+<p>配置 webpack 修改 less 变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">loader</span>: <span class="string">&#x27;less-loader&#x27;</span>,</span><br><span class="line">+ <span class="attr">options</span>: &#123;</span><br><span class="line">+   <span class="attr">modifyVars</span>: &#123;</span><br><span class="line">+     <span class="string">&#x27;@ant-prefix&#x27;</span>: <span class="string">&#x27;yourPrefix&#x27;</span>,</span><br><span class="line">+   &#125;,</span><br><span class="line">+   <span class="attr">javascriptEnabled</span>: <span class="literal">true</span>,</span><br><span class="line">+ &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置 antd ConfigProvider</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import &#123; ConfigProvider &#125; from &#x27;antd&#x27;;</span><br><span class="line">export const MyApp = () =&gt; (</span><br><span class="line">  &lt;ConfigProvider prefixCls=&quot;yourPrefix&quot;&gt;</span><br><span class="line">    &lt;App /&gt;</span><br><span class="line">  &lt;/ConfigProvider&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h4 id="webpack配置的问题"><a href="#webpack配置的问题" class="headerlink" title="webpack配置的问题"></a>webpack配置的问题</h4><p>微应用的打包工具还需要增加如下配置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> packageName = <span class="built_in">require</span>(<span class="string">&#x27;./package.json&#x27;</span>).<span class="property">name</span>;</span><br><span class="line">  <span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">      <span class="attr">library</span>: <span class="string">`<span class="subst">$&#123;packageName&#125;</span>-[name]`</span>,</span><br><span class="line">      <span class="attr">libraryTarget</span>: <span class="string">&#x27;umd&#x27;</span>,</span><br><span class="line">      <span class="attr">jsonpFunction</span>: <span class="string">`webpackJsonp_<span class="subst">$&#123;packageName&#125;</span>`</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="qiankun实践-react微前端应用"><a href="#qiankun实践-react微前端应用" class="headerlink" title="qiankun实践 - react微前端应用"></a>qiankun实践 - react微前端应用</h3><p>起始，准备2个react应用，直接用create-react-app创建两个app应用，可以得到一个文件夹里有两个项目。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npx create-react-app main-app</span><br><span class="line">npx create-react-app micro-app</span><br></pre></td></tr></table></figure>
+
+<p>我们用main做主应用，micro做子应用，按照我们的api，子应用只需要配置一个register就可以引入子应用。<br><strong>其中子应用需要调出webpack配置，create-react-app默认是不允许手动配置的，使用命令就可以了</strong>。<br>进入micro-app的文件夹目录运行(create-react-app也有overload的办法更改配置，这里为了方便直接用命令调出来)：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run eject</span><br></pre></td></tr></table></figure>
+
+<p>这样项目的准备工作就做好了。</p>
+<h3 id="子应用配置"><a href="#子应用配置" class="headerlink" title="子应用配置"></a>子应用配置</h3><p>配置子应用两个步骤，一个是生命周期的配置。 我们把生命周期函数写好放到main.js中:</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113127374.png" alt="image-20210225113127374"></p>
+<p>然后把reactDom.render放到mount生命周期里调用，让qiankun在准备好加载mount的时候再去初始化应用：</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113208656.png" alt="image-20210225113208656"></p>
+<p>unmount的注销操作也不能忘记:</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113250407.png" alt="image-20210225113250407"></p>
+<p>我们更改一下子应用的根节点id，在父应用中再去引用它(不要忘了html里也需要更改):</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113335581.png" alt="image-20210225113335581"></p>
+<p>最后再把webpack中的配置修改一下：<br>1、修改devserver支持cors 修改端口<br><code>headers: &#123; &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;, &#125;</code></p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113406029.png" alt="image-20210225113406029"></p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113433309.png" alt="image-20210225113433309"><br>2、修改增加bundle的导出,在webpack.config.js增加配置：</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113504237.png" alt="image-20210225113504237"></p>
+<h3 id="父应用配置"><a href="#父应用配置" class="headerlink" title="父应用配置"></a>父应用配置</h3><p>然后我们就可以去在main应用中，注册了首先要</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install qiankun --save</span><br></pre></td></tr></table></figure>
+
+<p>然后在main文件index.js中注册子应用：</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113612030.png" alt="image-20210225113612030"></p>
+<p>别忘了我们还需要在public&#x2F;index.html中写一个div容器，id是我们子应用的那个id，用来承载子应用的渲染:</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113650792.png" alt="image-20210225113650792"></p>
+<p>然后我们就可以开始运行看一看了:</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113731843.png" alt="image-20210225113731843"></p>
+<p>运行成功，随便改一下micro的样式看看效果：</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113803662.png" alt="image-20210225113803662"></p>
+<p>接下来我们需要处理一下路由跳转的问题。</p>
+<h3 id="路由的处理实践"><a href="#路由的处理实践" class="headerlink" title="路由的处理实践"></a>路由的处理实践</h3><p>前文有提到，在react中使用qiankun可以使用apiloadMicroApp,这里我们也用它来处理路由的跳转。<br>我们主要是在main-app中操作：<br>首先新建micro-app的view文件（每多一个子应用就新建一个）：</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113839377.png" alt="image-20210225113839377"></p>
+<p>然后使用react-router直接配置：<br>由于create-react-app默认没有直接提供react-router，我们手动下一个</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install react-router react-router-dom --save</span><br></pre></td></tr></table></figure>
+
+<p>改完index.js长这样：</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225113942064.png" alt="image-20210225113942064"></p>
+<p>再试一下：</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20210225114020401.png" alt="image-20210225114020401"></p>
+<p>大功告成！ </p>
+<h3 id="结论和源码"><a href="#结论和源码" class="headerlink" title="结论和源码"></a>结论和源码</h3><p>相比较上一次我们看见的 single-spa的配置要简单了很多，而且更加直白，新增子应用更加无缝。<br>需要demo源码的同学私信我哦</p>
+<h4 id="应用场景和坑-静态资源问题解决"><a href="#应用场景和坑-静态资源问题解决" class="headerlink" title="应用场景和坑:静态资源问题解决"></a>应用场景和坑:静态资源问题解决</h4><p>微应用打包之后 css 中的字体文件和图片加载如果使用的加载路径是相对路径，会导致css 中的字体文件和图片加载 404。</p>
+<p>而 css 文件一旦打包完成，就无法通过动态修改 publicPath 来修正其中的字体文件和背景图片的路径。</p>
+<p>主要有三个解决方案：</p>
+<ul>
+<li>所有图片等静态资源上传至 cdn，css 中直接引用 cdn 地址（推荐）</li>
+<li>借助 webpack 的 url-loader 将字体文件和图片打包成 base64（适用于字体文件和图片体积小的项目）（推荐）</li>
+<li>使用绝对地址，nginx中设置静态目录</li>
+</ul>
+<h4 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h4><p>qiankun整体的思路是比较ok的，它大大简化了single-spa的使用逻辑，让微前端的门槛变得更低，但它仍然有一些缺点，例如部分api总是会有莫名其妙的问题、api文档不是特别直观等，这些都是待改进的地方。而对于微前端来说，做到能够技术栈无关、渐进升级旧项目、分离不同业务等功能就已经能发挥它的最大价值了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://macshion.github.io/micro-frontend/" data-id="cm1kx87eo005e6g4ceaub5wt3" data-title="微前端探索" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/" rel="tag">微前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/nextjs-umijs/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          How does UmiJS stack up against Next.js?
+        
+      </div>
+    </a>
+  
+  
+    <a href="/NLP-difficult/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">清华大学刘知远：自然语言理解难在哪儿？</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/English/">English</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E6%96%87/">中文</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axios/" rel="tag">Axios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BeautifulSoup/" rel="tag">BeautifulSoup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/" rel="tag">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dot/" rel="tag">Dot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Fetch/" rel="tag">Fetch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gatsby/" rel="tag">Gatsby</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graphviz/" rel="tag">Graphviz</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Less/" rel="tag">Less</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nextjs/" rel="tag">Nextjs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object/" rel="tag">Object</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redux/" rel="tag">Redux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Roadmap/" rel="tag">Roadmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SEO/" rel="tag">SEO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSR/" rel="tag">SSR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVG/" rel="tag">SVG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Styled-Components/" rel="tag">Styled-Components</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/" rel="tag">Tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Typescript/" rel="tag">Typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Umi/" rel="tag">Umi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VUE/" rel="tag">VUE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/" rel="tag">Webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/" rel="tag">前端面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/" rel="tag">微前端</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Axios/" style="font-size: 10px;">Axios</a> <a href="/tags/BeautifulSoup/" style="font-size: 10px;">BeautifulSoup</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Dot/" style="font-size: 10px;">Dot</a> <a href="/tags/Fetch/" style="font-size: 10px;">Fetch</a> <a href="/tags/Gatsby/" style="font-size: 12.5px;">Gatsby</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/Github/" style="font-size: 12.5px;">Github</a> <a href="/tags/Graphviz/" style="font-size: 10px;">Graphviz</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Javascript/" style="font-size: 17.5px;">Javascript</a> <a href="/tags/Less/" style="font-size: 10px;">Less</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/NLP/" style="font-size: 12.5px;">NLP</a> <a href="/tags/Nextjs/" style="font-size: 15px;">Nextjs</a> <a href="/tags/Object/" style="font-size: 12.5px;">Object</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/Redux/" style="font-size: 10px;">Redux</a> <a href="/tags/Roadmap/" style="font-size: 10px;">Roadmap</a> <a href="/tags/SEO/" style="font-size: 10px;">SEO</a> <a href="/tags/SSR/" style="font-size: 10px;">SSR</a> <a href="/tags/SVG/" style="font-size: 10px;">SVG</a> <a href="/tags/Styled-Components/" style="font-size: 10px;">Styled-Components</a> <a href="/tags/Tools/" style="font-size: 15px;">Tools</a> <a href="/tags/Typescript/" style="font-size: 10px;">Typescript</a> <a href="/tags/Umi/" style="font-size: 10px;">Umi</a> <a href="/tags/VUE/" style="font-size: 10px;">VUE</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">前端面试</a> <a href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">微前端</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Youtube-ltc%E4%B8%8B%E8%BD%BD%E6%B2%B9%E7%AE%A1%E5%92%8CB%E7%AB%99%E8%A7%86%E9%A2%91/">Youtube-ltc下载油管和B站视频</a>
+          </li>
+        
+          <li>
+            <a href="/Typescript-type-and-interface/">Typescript手册指南阅读笔记 - 类型与接口</a>
+          </li>
+        
+          <li>
+            <a href="/LearnhowGatsbyworks/">Tutorial: Learn how Gatsby works</a>
+          </li>
+        
+          <li>
+            <a href="/JavaScriptFetchAPI/">How To Use the JavaScript Fetch API to Get Data</a>
+          </li>
+        
+          <li>
+            <a href="/HowToUseAxioswithReact/">How To Use Axios with React</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 Macshion<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

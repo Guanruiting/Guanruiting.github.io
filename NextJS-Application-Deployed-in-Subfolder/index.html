@@ -4,17 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>Archives: 2024 | Macshion&#39;s blog</title>
+  <title>Deploy Your Next JS Application in Subfolder | Macshion&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="渣渣前端工程师">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Macshion&#39;s blog">
-<meta property="og:url" content="https://macshion.github.io/archives/2024/index.html">
+  <meta name="description" content="You sometimes want to deploy your Next JS under &#x2F;blog, &#x2F;docs, or &#x2F;dashboard folder. But by default, you can only deploy your Next JS on your project root folder. Since Next JS 9.5, you can change this">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deploy Your Next JS Application in Subfolder">
+<meta property="og:url" content="https://macshion.github.io/NextJS-Application-Deployed-in-Subfolder/index.html">
 <meta property="og:site_name" content="Macshion&#39;s blog">
-<meta property="og:description" content="渣渣前端工程师">
+<meta property="og:description" content="You sometimes want to deploy your Next JS under &#x2F;blog, &#x2F;docs, or &#x2F;dashboard folder. But by default, you can only deploy your Next JS on your project root folder. Since Next JS 9.5, you can change this">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-09-27T03:03:07.000Z">
+<meta property="article:modified_time" content="2024-09-27T15:58:37.997Z">
 <meta property="article:author" content="Macshion">
-<meta property="article:tag" content="前端开发,前端技术,前端博客,前端技术博客">
+<meta property="article:tag" content="Nextjs">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Macshion's blog" type="application/atom+xml">
@@ -74,134 +76,77 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/Youtube-ltc%E4%B8%8B%E8%BD%BD%E6%B2%B9%E7%AE%A1%E5%92%8CB%E7%AB%99%E8%A7%86%E9%A2%91/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-09-27T15:58:38.001Z" itemprop="datePublished">Sep 28</time>
+        <section id="main"><article id="post-NextJS-Application-Deployed-in-Subfolder" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/NextJS-Application-Deployed-in-Subfolder/" class="article-date">
+  <time class="dt-published" datetime="2021-09-27T03:03:07.000Z" itemprop="datePublished">2021-09-27</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/English/">English</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Youtube-ltc%E4%B8%8B%E8%BD%BD%E6%B2%B9%E7%AE%A1%E5%92%8CB%E7%AB%99%E8%A7%86%E9%A2%91/">Youtube-ltc下载油管和B站视频</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      Deploy Your Next JS Application in Subfolder
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/Typescript-type-and-interface/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-09-27T15:58:37.999Z" itemprop="datePublished">Sep 28</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Typescript-type-and-interface/">Typescript手册指南阅读笔记 - 类型与接口</a>
-    </h1>
-  
+        <p>You sometimes want to deploy your Next JS under <code>/blog</code>, <code>/docs</code>, or <code>/dashboard</code> folder. But by default, you can only deploy your Next JS on your project root folder.</p>
+<p>Since Next JS 9.5, you can change this configuration by setting <code>basePath</code> in your <code>next.config.js</code>. By default, <code>basePath</code> is set to <code>/</code> but you can modify to <code>/blog</code> or <code>/docs</code>:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;  <span class="attr">basePath</span>: <span class="string">&#x27;/docs&#x27;</span>,&#125;;</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/LearnhowGatsbyworks/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-09-27T15:58:37.995Z" itemprop="datePublished">Sep 28</time>
-</a>
+<p>That also means you can also run several Next JS applications under the same domain. You don’t need to create a subdomain anymore.</p>
+<p>After updating <code>basePath</code>, you won’t be able to visit <code>http://localhost:3000</code> on your local development environment. To continue to browse on your local machine, you need to add <code>basePath</code> value after <code>http://localhost:3000</code>.</p>
+<blockquote>
+<p>For your information, you don’t need to update your links in your Next JS code. Indeed, it’ll automatically prepend <code>basePath</code> value to all your links.</p>
+</blockquote>
+<p>Source: <a target="_blank" rel="noopener" href="https://creativedesignsguru.com/deploy-your-next-js-application-in-subfolder/">https://creativedesignsguru.com/deploy-your-next-js-application-in-subfolder/</a></p>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/LearnhowGatsbyworks/">Tutorial: Learn how Gatsby works</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/JavaScriptFetchAPI/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-09-27T15:58:37.994Z" itemprop="datePublished">Sep 28</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://macshion.github.io/NextJS-Application-Deployed-in-Subfolder/" data-id="cm1kx87e300116g4ccwhr6ia2" data-title="Deploy Your Next JS Application in Subfolder" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/JavaScriptFetchAPI/">How To Use the JavaScript Fetch API to Get Data</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/HowToUseAxioswithReact/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-09-27T15:58:37.993Z" itemprop="datePublished">Sep 28</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/HowToUseAxioswithReact/">How To Use Axios with React</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/HowtoMakeReactSEO-Friendly/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-09-27T15:58:37.993Z" itemprop="datePublished">Sep 28</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/HowtoMakeReactSEO-Friendly/">How to Make React SEO-Friendly: an Extensive SEO Guide</a>
-    </h1>
-  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nextjs/" rel="tag">Nextjs</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/markdown-latex-math/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          LaTeX - 在Markdown中插入数学公式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Frontend-study-roadmap/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Frontend Study Roadmap</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>

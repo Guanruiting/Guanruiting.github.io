@@ -4,17 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>Archives: 2024 | Macshion&#39;s blog</title>
+  <title>SVG 基础知识（一） - SVG 视口 | Macshion&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="渣渣前端工程师">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Macshion&#39;s blog">
-<meta property="og:url" content="https://macshion.github.io/archives/2024/index.html">
+  <meta name="description" content="SVG 是可缩放矢量图形（Scalable Vector Graphics, SVG），一种用来描述二维矢量图形的 XML 标记语言。SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失。SVG是万维网联盟的标准，与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SVG 基础知识（一） - SVG 视口">
+<meta property="og:url" content="https://macshion.github.io/svg-basic1/index.html">
 <meta property="og:site_name" content="Macshion&#39;s blog">
-<meta property="og:description" content="渣渣前端工程师">
+<meta property="og:description" content="SVG 是可缩放矢量图形（Scalable Vector Graphics, SVG），一种用来描述二维矢量图形的 XML 标记语言。SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失。SVG是万维网联盟的标准，与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-08-11T15:09:12.000Z">
+<meta property="article:modified_time" content="2024-09-27T16:02:35.037Z">
 <meta property="article:author" content="Macshion">
-<meta property="article:tag" content="前端开发,前端技术,前端博客,前端技术博客">
+<meta property="article:tag" content="SVG">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Macshion's blog" type="application/atom+xml">
@@ -74,134 +76,183 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/Youtube-ltc%E4%B8%8B%E8%BD%BD%E6%B2%B9%E7%AE%A1%E5%92%8CB%E7%AB%99%E8%A7%86%E9%A2%91/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-09-27T15:58:38.001Z" itemprop="datePublished">Sep 28</time>
+        <section id="main"><article id="post-svg-basic1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/svg-basic1/" class="article-date">
+  <time class="dt-published" datetime="2019-08-11T15:09:12.000Z" itemprop="datePublished">2019-08-12</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%B8%AD%E6%96%87/">中文</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Youtube-ltc%E4%B8%8B%E8%BD%BD%E6%B2%B9%E7%AE%A1%E5%92%8CB%E7%AB%99%E8%A7%86%E9%A2%91/">Youtube-ltc下载油管和B站视频</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      SVG 基础知识（一） - SVG 视口
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/Typescript-type-and-interface/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-09-27T15:58:37.999Z" itemprop="datePublished">Sep 28</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Typescript-type-and-interface/">Typescript手册指南阅读笔记 - 类型与接口</a>
-    </h1>
-  
+        <p>SVG 是可缩放矢量图形（Scalable Vector Graphics, SVG），一种用来描述二维矢量图形的 XML 标记语言。SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失。SVG是万维网联盟的标准，与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体。</p>
+<span id="more"></span>
+<h2 id="SVG-是什么？"><a href="#SVG-是什么？" class="headerlink" title="SVG 是什么？"></a>SVG 是什么？</h2><ul>
+<li>SVG 指可伸缩矢量图形（Scalable Vector Graphics）；</li>
+<li>SVG 用来定义用于网络的基于矢量的图形；</li>
+<li>SVG 使用XML格式定义图形；</li>
+<li>SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失；</li>
+<li>SVG 是万维网联盟的标准；</li>
+<li>SVG 与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体。</li>
+</ul>
+<h2 id="SVG-的优势"><a href="#SVG-的优势" class="headerlink" title="SVG 的优势"></a>SVG 的优势</h2><ul>
+<li>SVG 可被非常多的工具读取和修改（比如记事本）；</li>
+<li>SVG 图像中的文本是可选的，同时也是可搜索的（很适合制作地图）；</li>
+<li>SVG 与 JPEG 和 GIF 图像比起来，尺寸更小，且可压缩性更强（小）；</li>
+<li>SVG 图像可在任何的分辨率下被高质量地打印，可在图像质量不下降的情况下被放大（可伸缩）；</li>
+<li>SVG 文件是纯粹的 XML，可以与Java技术一起运行，与其他标准（比如 XSL 和 DOM）相兼容（开放标准）。</li>
+</ul>
+<h2 id="SVG-视口"><a href="#SVG-视口" class="headerlink" title="SVG 视口"></a>SVG 视口</h2><h3 id="viewport"><a href="#viewport" class="headerlink" title="viewport"></a>viewport</h3><p>  SVG 可见区域的大小，或者可以想像成舞台大小，画布大小。</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">&quot;800&quot;</span> <span class="attr">height</span>=<span class="string">&quot;600&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>SVG单位：em&#x2F;rem, ex, px, in, cm, mm</p>
+<table>
+<thead>
+<tr>
+<th align="center">单位</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">em</td>
+<td align="left">相对于父元素的字体大小</td>
+</tr>
+<tr>
+<td align="center">ex</td>
+<td align="left">相对于小写字母“x”的高度</td>
+</tr>
+<tr>
+<td align="center">px</td>
+<td align="left">相对于屏幕分辨率而不是视窗的大小：通常为1个点或1&#x2F;72英寸</td>
+</tr>
+<tr>
+<td align="center">in</td>
+<td align="left">inch, 表英寸</td>
+</tr>
+<tr>
+<td align="center">cm</td>
+<td align="left">centimeter, 表厘米</td>
+</tr>
+<tr>
+<td align="center">mm</td>
+<td align="left">millimeter, 表毫米</td>
+</tr>
+</tbody></table>
+<h3 id="viewBox"><a href="#viewBox" class="headerlink" title="viewBox"></a>viewBox</h3><p>视区盒子，SVG就像是我们的显示器屏幕，viewBox 就是截屏工具选中的那个框框， 最终的呈现就是把框框中的截屏内容再次在显示器中全屏显示！</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">viewBox=<span class="string">&quot;x,y,width,height&quot;</span></span><br><span class="line"><span class="comment">// x: 左上角横坐标, y: 左上角纵坐标, width: 宽度, height: 高度</span></span><br></pre></td></tr></table></figure>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/LearnhowGatsbyworks/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-09-27T15:58:37.995Z" itemprop="datePublished">Sep 28</time>
-</a>
+<h3 id="preserveAspectRatio"><a href="#preserveAspectRatio" class="headerlink" title="preserveAspectRatio"></a>preserveAspectRatio</h3><p>使用 preserveAspectRatio 属性来让 viewBox 保持宽高比。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">preserveAspectRatio=[defer]&lt;align&gt;&lt;meetOrSlice&gt;</span><br></pre></td></tr></table></figure>
+<p>defer 参数是可选值，它仅仅在 image 元素上应用 preserveAspectRatio 属性时才使用。在使用其他元素时会被忽略。<br>align 参数控制 viewBox 是否强制进行均匀的缩放。</p>
+<table>
+<thead>
+<tr>
+<th align="center">取值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">xMin</td>
+<td align="left">viewBox 的最小 X 值对齐 viewport 的左边部</td>
+</tr>
+<tr>
+<td align="center">xMid</td>
+<td align="left">viewBox 的 X 轴中点对齐 viewport 的 X 轴中点</td>
+</tr>
+<tr>
+<td align="center">xMax</td>
+<td align="left">viewBox 的最大 X 值对齐 viewport 的右边部</td>
+</tr>
+<tr>
+<td align="center">YMin</td>
+<td align="left">viewBox 的最小 Y 值对齐 viewport 的顶边</td>
+</tr>
+<tr>
+<td align="center">YMid</td>
+<td align="left">viewBox 的 Y 轴中点对齐 viewport 的 Y 轴中点</td>
+</tr>
+<tr>
+<td align="center">YMax</td>
+<td align="left">viewBox 的最小 Y 值对齐 viewport 的底边</td>
+</tr>
+</tbody></table>
+<p>![SVG preserveAspectRatio align 参数图解](&#x2F;img&#x2F;2019&#x2F;08&#x2F;Screen Shot 2019-08-12 at 01.19.47.png)</p>
+<p>align 参数的3x3种组合取值</p>
+<table>
+<thead>
+<tr>
+<th align="center">取值</th>
+<th align="left">描述</th>
+<th align="left">类比</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">xMinYMin</td>
+<td align="left">viewBox 的 &lt;min-x&gt; 对齐 viewport 的最小 X 值，min-y 对齐 viewport 的最小 Y 值</td>
+<td align="left">background-position: 0% 0%;</td>
+</tr>
+<tr>
+<td align="center">xMinYmid</td>
+<td align="left">viewBox 的 &lt;min-x&gt; 对齐 viewport 的最小 X 值，viewBox 的 Y 轴中点 对齐 viewport 的 Y 轴中点</td>
+<td align="left">background-position: 0% 50%;</td>
+</tr>
+<tr>
+<td align="center">xMinYMax</td>
+<td align="left">viewBox 的 &lt;min-x&gt; 对齐 viewport 的最小 X 值，min-y+&lt;height&gt; 对齐 viewport 的最小Y值</td>
+<td align="left">background-position: 0% 100%;</td>
+</tr>
+</tbody></table>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/LearnhowGatsbyworks/">Tutorial: Learn how Gatsby works</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/JavaScriptFetchAPI/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-09-27T15:58:37.994Z" itemprop="datePublished">Sep 28</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://macshion.github.io/svg-basic1/" data-id="cm1kx87eo005f6g4ced15b9qg" data-title="SVG 基础知识（一） - SVG 视口" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/JavaScriptFetchAPI/">How To Use the JavaScript Fetch API to Get Data</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/HowToUseAxioswithReact/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-09-27T15:58:37.993Z" itemprop="datePublished">Sep 28</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/HowToUseAxioswithReact/">How To Use Axios with React</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/HowtoMakeReactSEO-Friendly/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-09-27T15:58:37.993Z" itemprop="datePublished">Sep 28</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/HowtoMakeReactSEO-Friendly/">How to Make React SEO-Friendly: an Extensive SEO Guide</a>
-    </h1>
-  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SVG/" rel="tag">SVG</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Redux-tutorial/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Redux tutorial
+        
+      </div>
+    </a>
+  
+  
+    <a href="/June&July-2019/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">VUE学习笔记</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>
