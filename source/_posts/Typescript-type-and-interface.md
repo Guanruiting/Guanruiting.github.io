@@ -1,6 +1,6 @@
 ---
 title: Typescript手册指南阅读笔记 - 类型与接口
-time: 2020-12-22 09:53:00
+date: 2020-12-22 09:53:00
 tags:
 - Typescript
 categories: 中文

@@ -1,6 +1,6 @@
 ---
 title: 'How to Make React SEO-Friendly: an Extensive SEO Guide'
-time: 2020-12-24 16:47:00
+date: 2020-12-24 16:47:00
 tags:
 - React
 - SEO
