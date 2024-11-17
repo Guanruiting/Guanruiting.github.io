@@ -5,7 +5,7 @@
 # Site
 title: Macshion's blog
 subtitle: "每天进步一点点"
-description: "渣渣前端工程师"
+description: "Hi there 👋 I’m a Front-End Engineer😊"
 keywords: "前端开发,前端技术,前端博客,前端技术博客"
 author: Macshion
 language: en
@@ -85,7 +85,7 @@ updated_option: 'mtime'
 
 # Pagination
 ## Set per_page to 0 to disable pagination
-per_page: 50
+per_page: 20
 pagination_dir: page
 
 # Include / Exclude file(s)
@@ -97,7 +97,8 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: cyanstyle
+# theme: landscape
+theme: cactus
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
