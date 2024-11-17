@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html<%= config.language ? " lang=" + config.language.substring(0, 2) : ""%>>
+    <%- partial('_partial/head') %>
+
+    <body class="max-width mx-auto px3 <%- theme.direction -%>">
+
+<div class="stars"></div>
+
+        <% if (is_post()) { %>
+        <div class="post">
+            <div id="navLeft">
+                <ul>
+                    <% for (var i in theme.nav) { %>
+                    <!--
+     -->
+                    <li><a href="<%- url_for(theme.nav[i]) %>"><%= __('nav.'+i).replace("nav.", "") %></a></li>
+                    <!--
+   --><% } %>
+                </ul>
+            </div>
+        </div>
+        <%- partial('_partial/post/actions_desktop') %>
+        <% } %>
+        <div class="content index py4 <%= is_home() ? 'h-card' : '' %>">
+            <% if (!is_post()) { %>
+            <%- partial('_partial/header') %>
+            <% } %>
+            <%- body %>
+            <% if (is_post()) { %>
+            <%- partial('_partial/post/actions_mobile') %>
+            <% } %>
+            <%- partial('_partial/footer') %>
+        </div>
+        <%- partial('_partial/styles') %>
+        <%- partial('_partial/scripts') %>
+    </body>
+
+    </html>
