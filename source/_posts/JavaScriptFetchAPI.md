@@ -1,6 +1,6 @@
 ---
 title: How To Use the JavaScript Fetch API to Get Data
-time: 2020-12-23 10:55:00
+date: 2020-12-23 10:55:00
 tags:
 - Javascript
 - Fetch

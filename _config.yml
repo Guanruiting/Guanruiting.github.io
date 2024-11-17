@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: "Macshion"
+title: Macshion's blog
 subtitle: "每天进步一点点"
-description: "渣渣前端工程师"
+description: "Hi there 👋 I’m a Front-End Engineer😊"
 keywords: "前端开发,前端技术,前端博客,前端技术博客"
-author: "Macshion"
-language: "Zh"
+author: Macshion
+language: en
 timezone: ''
 
 # URL
-## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
+## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://macshion.github.io
 root: /
 permalink: :title/
@@ -40,19 +40,18 @@ external_link:
   field: site # Apply to the whole site
   exclude: ''
 filename_case: 0
-render_drafts: true
+render_drafts: false
 post_asset_folder: false
 relative_link: false
 future: true
+syntax_highlighter: highlight.js
 highlight:
-  enable: true
   line_number: true
   auto_detect: false
   tab_replace: ''
   wrap: true
   hljs: false
 prismjs:
-  enable: false
   preprocess: true
   line_number: true
   tab_replace: ''
@@ -86,7 +85,7 @@ updated_option: 'mtime'
 
 # Pagination
 ## Set per_page to 0 to disable pagination
-per_page: 50
+per_page: 20
 pagination_dir: page
 
 # Include / Exclude file(s)
@@ -98,8 +97,8 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-# theme: prontera
-theme: oranges
+# theme: landscape
+theme: cactus
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -108,16 +107,3 @@ deploy:
   repo: https://github.com/macshion/macshion.github.io # https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
   branch: master
   message: deploy
-
-feed:
-  type: atom
-  path: atom.xml
-  limit: 20
-  hub:
-  content:
-  content_limit: 140
-  content_limit_delim: ' '
-  order_by: -date
-  icon: icon.png
-  autodiscovery: true
-  template:
